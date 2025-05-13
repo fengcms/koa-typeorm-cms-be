@@ -6,7 +6,7 @@
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
     "@types/koa": "^2.15.0",
-    "@types/koa-router": "^7.4.8",
+    "@types/koa__router": "^12.0.4",
     "@types/node": "^22.13.10",
     "mysql2": "^3.14.1",
     "nodemon": "^3.1.10",
@@ -15,9 +15,12 @@
   },
   "dependencies": {
     "@koa/router": "^13.1.0",
+    "@types/koa-bodyparser": "^4.3.12",
     "koa": "^3.0.0",
+    "koa-bodyparser": "^4.4.1",
     "reflect-metadata": "^0.2.2",
-    "typeorm": "0.3.23"
+    "typeorm": "0.3.23",
+    "xss": "^1.0.15"
   },
   "scripts": {
     "start": "ts-node src/index.ts",

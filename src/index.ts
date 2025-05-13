@@ -1,17 +1,14 @@
 import * as Koa from 'koa'
+import * as bodyParser from 'koa-bodyparser'
 import { HostConfig } from './config'
-import DB from './db'
+import { initDB } from './db'
 import errorHandler from './middlewares/errorHandler'
 import router from './router'
 const app = new Koa()
-
-DB.initialize()
-  .then(() => {
-    console.log('Data Source has been initialized!')
-  })
-  .catch((err) => {
-    console.error('Error during Data Source initialization:', err)
-  })
+// 初始化数据库
+initDB()
+// 使用 bodyParser 中间件解析 JSON 请求体
+app.use(bodyParser())
 
 // 注册路由
 app.use(router.routes())
