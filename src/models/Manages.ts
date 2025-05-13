@@ -5,28 +5,28 @@ export class Manages {
   @PrimaryGeneratedColumn()
   id: number
 
-  @Column()
+  @Column('varchar')
   account: string
 
   @Column('text')
   password: string
 
-  @Column()
+  @Column('varchar')
   name: string
 
-  @Column()
+  @Column('varchar')
   avatar: string
 
   @Column('text')
   mark: string
 
-  @Column({ default: 'MARKDOWN' })
+  @Column('varchar', { default: 'MARKDOWN' })
   editor: string
 
   @Column({ type: 'bigint' })
   mobile: number
 
-  @Column()
+  @Column('varchar')
   email: string
 
   @CreateDateColumn()

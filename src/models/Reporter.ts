@@ -5,31 +5,31 @@ export class Reporter {
   @PrimaryGeneratedColumn()
   id: number
 
-  @Column()
+  @Column('varchar')
   name: string
 
-  @Column()
+  @Column('varchar')
   avatar: string
 
-  @Column()
+  @Column('varchar')
   code: string
 
-  @Column()
+  @Column('varchar')
   position: string
 
   @Column('text')
   mark: string
 
-  @Column({ default: 'MAN' })
+  @Column('varchar', { default: 'MAN' })
   sex: string
 
   @Column({ type: 'bigint' })
   mobile: number
 
-  @Column()
+  @Column('varchar')
   email: string
 
-  @Column({ default: 'PENDING' })
+  @Column('varchar', { default: 'PENDING' })
   status: string
 
   @CreateDateColumn()

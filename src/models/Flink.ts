@@ -5,16 +5,16 @@ export class Flink {
   @PrimaryGeneratedColumn()
   id: number
 
-  @Column()
+  @Column('varchar')
   name: string
 
   @Column('text')
   mark: string
 
-  @Column({ default: 0 })
+  @Column('int', { default: 0 })
   sort: number
 
-  @Column()
+  @Column('varchar')
   link: string
 
   @CreateDateColumn()

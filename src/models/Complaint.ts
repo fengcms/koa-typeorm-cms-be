@@ -5,31 +5,31 @@ export class Complaint {
   @PrimaryGeneratedColumn()
   id: number
 
-  @Column()
+  @Column('varchar')
   defendant: string
 
-  @Column()
+  @Column('varchar')
   problem: string
 
-  @Column()
+  @Column('varchar')
   appeal: string
 
-  @Column()
+  @Column('varchar')
   img: string
 
   @Column('text')
   detail: string
 
-  @Column()
+  @Column('int')
   user_id: number
 
-  @Column()
+  @Column('varchar')
   user_name: string
 
   @Column('text')
   reply: string
 
-  @Column({ default: 'PENDING' })
+  @Column('varchar', { default: 'PENDING' })
   status: string
 
   @CreateDateColumn()

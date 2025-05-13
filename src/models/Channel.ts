@@ -5,28 +5,28 @@ export class Channel {
   @PrimaryGeneratedColumn()
   id: number
 
-  @Column()
+  @Column('int')
   pid: number
 
-  @Column()
+  @Column('varchar')
   name: string
 
-  @Column({ default: 0 })
+  @Column('int', { default: 0 })
   sort: number
 
-  @Column()
+  @Column('varchar')
   keywords: string
 
   @Column('text')
   description: string
 
-  @Column({ default: 'PENDING' })
+  @Column('varchar', { default: 'PENDING' })
   status: string
 
-  @Column()
+  @Column('varchar')
   show_img: string
 
-  @Column()
+  @Column('varchar')
   website: string
 
   @CreateDateColumn()

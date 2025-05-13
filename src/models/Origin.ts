@@ -5,13 +5,13 @@ export class Origin {
   @PrimaryGeneratedColumn()
   id: number
 
-  @Column()
+  @Column('varchar')
   name: string
 
-  @Column()
+  @Column('varchar')
   contact: string
 
-  @Column()
+  @Column('varchar')
   logo: string
 
   @Column('text')
@@ -20,10 +20,10 @@ export class Origin {
   @Column({ type: 'bigint' })
   mobile: number
 
-  @Column()
+  @Column('varchar')
   email: string
 
-  @Column()
+  @Column('varchar')
   website: string
 
   @CreateDateColumn()

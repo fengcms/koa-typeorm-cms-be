@@ -5,13 +5,13 @@ export class Tags {
   @PrimaryGeneratedColumn()
   id: number
 
-  @Column()
+  @Column('varchar')
   tag: string
 
-  @Column()
+  @Column('int')
   channel_id: number
 
-  @Column({ default: 0 })
+  @Column('int', { default: 0 })
   hits: number
 
   @CreateDateColumn()

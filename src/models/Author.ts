@@ -5,10 +5,10 @@ export class Author {
   @PrimaryGeneratedColumn()
   id: number
 
-  @Column()
+  @Column('varchar')
   name: string
 
-  @Column()
+  @Column('varchar')
   avatar: string
 
   @Column('text')
@@ -17,10 +17,10 @@ export class Author {
   @Column({ type: 'bigint' })
   mobile: number
 
-  @Column()
+  @Column('varchar')
   email: string
 
-  @Column()
+  @Column('varchar')
   website: string
 
   @CreateDateColumn()

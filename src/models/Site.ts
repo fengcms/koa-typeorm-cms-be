@@ -5,13 +5,13 @@ export class Site {
   @PrimaryGeneratedColumn()
   id: number
 
-  @Column()
+  @Column('varchar')
   name: string
 
-  @Column()
+  @Column('varchar')
   title: string
 
-  @Column()
+  @Column('varchar')
   logo: string
 
   @Column('text')
@@ -22,6 +22,9 @@ export class Site {
 
   @Column('text')
   copyright: string
+
+  @Column('text')
+  mobile_copyright: string
 
   @CreateDateColumn()
   time: Date

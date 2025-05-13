@@ -5,16 +5,16 @@ export class Show {
   @PrimaryGeneratedColumn()
   id: number
 
-  @Column()
+  @Column('varchar')
   name: string
 
   @Column('text')
   mark: string
 
-  @Column()
+  @Column('varchar')
   img: string
 
-  @Column()
+  @Column('varchar')
   link: string
 
   @CreateDateColumn()

@@ -5,13 +5,13 @@ export class User {
   @PrimaryGeneratedColumn()
   id: number
 
-  @Column()
+  @Column('varchar')
   account: string
 
-  @Column()
+  @Column('varchar')
   password: string
 
-  @Column()
+  @Column('varchar')
   avatar: string
 
   @Column('text')
@@ -23,22 +23,22 @@ export class User {
   @Column({ type: 'enum', enum: ['MALE', 'FEMALE', 'UNKNOWN'] })
   sex: string
 
-  @Column({ default: 'MARKDOWN' })
+  @Column('varchar', { default: 'MARKDOWN' })
   editor: string
 
   @Column({ type: 'bigint' })
   mobile: number
 
-  @Column()
+  @Column('varchar')
   email: string
 
-  @Column()
+  @Column('varchar')
   website: string
 
-  @Column({ default: 'ACTIVE' })
+  @Column('varchar', { default: 'ACTIVE' })
   status: string
 
-  @Column({ default: false })
+  @Column({ type: 'boolean', default: false })
   isAdmin: boolean
 
   @CreateDateColumn()

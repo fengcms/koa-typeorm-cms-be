@@ -5,7 +5,7 @@ export class Single {
   @PrimaryGeneratedColumn()
   id: number
 
-  @Column()
+  @Column('varchar')
   title: string
 
   @Column('text')
@@ -20,10 +20,10 @@ export class Single {
   @Column('text')
   markdown: string
 
-  @Column({ default: 'PENDING' })
+  @Column('varchar', { default: 'PENDING' })
   status: string
 
-  @Column({ default: 0 })
+  @Column('int', { default: 0 })
   hits: number
 
   @CreateDateColumn()

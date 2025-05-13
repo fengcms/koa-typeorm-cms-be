@@ -5,10 +5,10 @@ export class Article {
   @PrimaryGeneratedColumn()
   id: number
 
-  @Column()
+  @Column('varchar')
   title: string
 
-  @Column()
+  @Column('int')
   channel_id: number
 
   @Column('text')
@@ -23,34 +23,34 @@ export class Article {
   @Column('text')
   markdown: string
 
-  @Column()
+  @Column('varchar')
   img: string
 
-  @Column()
+  @Column('varchar')
   video: string
 
-  @Column()
+  @Column('varchar')
   author: string
 
-  @Column()
+  @Column('varchar')
   origin: string
 
-  @Column()
+  @Column('varchar')
   editor: string
 
-  @Column()
+  @Column('int')
   user_id: number
 
-  @Column({ default: 0 })
+  @Column('int', { default: 0 })
   istop: number
 
-  @Column({ default: 0 })
+  @Column('int', { default: 0 })
   hits: number
 
-  @Column({ default: 'NORMAL' })
+  @Column('varchar', { default: 'NORMAL' })
   type: string
 
-  @Column({ default: 'PENDING' })
+  @Column('varchar', { default: 'PENDING' })
   status: string
 
   @CreateDateColumn()
