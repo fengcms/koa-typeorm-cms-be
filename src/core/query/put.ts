@@ -32,15 +32,14 @@ const put = async (ctx: Context, model: ModelType, allParams: RequestParamsType,
   if (id === 'first') {
     const firstRecord = await repository.findOne({
       where: {},
-      order: { id: 'ASC' }
+      order: { id: 'ASC' },
     })
     if (!firstRecord) ctx.throw(404, '没有找到数据')
     const updateData = { ...firstRecord, ...params }
     const savedEntity = await repository.save(updateData).catch((err: any) => {
       ctx.throw(500, err)
     })
-    ctx.body = succ({ id: savedEntity.id })
-    return
+    return { id: savedEntity.id }
   }
 
   // 2. 单ID数据修改 /xxx/:id
@@ -53,8 +52,7 @@ const put = async (ctx: Context, model: ModelType, allParams: RequestParamsType,
     const savedEntity = await repository.save(updateData).catch((err: any) => {
       ctx.throw(500, err)
     })
-    ctx.body = succ({ id: savedEntity.id })
-    return
+    return { id: savedEntity.id }
   }
 
   // 3. 多ID单数据修改 /xxx/1,2,3,4,5,6
@@ -66,8 +64,7 @@ const put = async (ctx: Context, model: ModelType, allParams: RequestParamsType,
     const savedEntities = await repository.save(updateData).catch((err: any) => {
       ctx.throw(500, err)
     })
-    ctx.body = succ({ id: savedEntities.map((entity) => entity.id) })
-    return
+    return { id: savedEntities.map((entity) => entity.id) }
   }
 
   // 4. 多ID多数据修改 /xxx/batch
@@ -89,8 +86,7 @@ const put = async (ctx: Context, model: ModelType, allParams: RequestParamsType,
     const savedEntities = await repository.save(updateData).catch((err: any) => {
       ctx.throw(500, err)
     })
-    ctx.body = succ({ id: savedEntities.map((entity) => entity.id) })
-    return
+    return { id: savedEntities.map((entity) => entity.id) }
   }
 
   ctx.throw(400, '不支持的更新方式')

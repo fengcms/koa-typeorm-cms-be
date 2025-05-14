@@ -1,7 +1,6 @@
 import type { Context, Next } from 'koa'
 import { Between, In, IsNull, LessThan, LessThanOrEqual, Like, MoreThan, MoreThanOrEqual, Not } from 'typeorm'
 import type { ModelType, RequestParamsType } from '../../types/core'
-import { succ } from '../../utils/tools'
 
 // 从请求参数中找出非标准参数并输出为对象
 const getArgs = (params: Record<string, any>) => {
@@ -112,12 +111,12 @@ const ls = async (ctx: Context, model: ModelType, allParams: RequestParamsType, 
   // 执行查询
   const [list, count] = await queryBuilder.getManyAndCount()
 
-  ctx.body = succ({
+  return {
     page: Number(page),
     list,
     count,
     pageSize: PSize,
-  })
+  }
 }
 
 export default ls

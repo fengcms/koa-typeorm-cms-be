@@ -1,7 +1,5 @@
 import type { Context, Next } from 'koa'
-import { In } from 'typeorm'
 import type { ModelType, RequestParamsType } from '../../types/core'
-import { succ } from '../../utils/tools'
 
 const get = async (ctx: Context, model: ModelType, allParams: RequestParamsType, next: Next) => {
   const { id } = allParams
@@ -14,8 +12,7 @@ const get = async (ctx: Context, model: ModelType, allParams: RequestParamsType,
       order: { id: 'ASC' },
     })
     if (!record) ctx.throw(404, '没有找到数据')
-    ctx.body = succ(record)
-    return
+    return record
   }
 
   // 通过 ID 获取单条数据
@@ -24,8 +21,7 @@ const get = async (ctx: Context, model: ModelType, allParams: RequestParamsType,
       where: { id: Number.parseInt(id) },
     })
     if (!record) ctx.throw(404, '没有找到数据')
-    ctx.body = succ(record)
-    return
+    return record
   }
 
   ctx.throw(400, '不支持的获取方式')
