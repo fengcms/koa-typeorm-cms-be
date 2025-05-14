@@ -6,3 +6,10 @@ export interface RequestParamsType {
   id: string
   params?: any
 }
+
+export interface ListDataTypes {
+  list: any[]
+  count: number
+  page: number
+  pageSize: number
+}

@@ -4,6 +4,7 @@ import { getJSFile, succ } from '../utils/tools'
 import Query from './query'
 
 const beforeHandle = getJSFile('../api/restful/before')
+const afterHandle = getJSFile('../api/restful/after')
 
 export const Core = async (ctx: Context, model: ModelType, allParams: RequestParamsType, next: Next) => {
   const { method, apiName } = allParams
@@ -14,6 +15,11 @@ export const Core = async (ctx: Context, model: ModelType, allParams: RequestPar
     // 在前处理中如果没有返回任何值，则终止后续操作
     if (!allParams.params) return
   }
-  const data = await Query[method](ctx, model, allParams, next)
+  let data = await Query[method](ctx, model, allParams, next)
+  // 如有后处理，对查询结果进行处理
+  if (afterHandle.includes(apiName)) {
+    const handle = require(`../api/restful/after/${apiName}`).default[method]
+    if (handle) data = await handle(data, ctx, allParams)
+  }
   ctx.body = succ(data)
 }
