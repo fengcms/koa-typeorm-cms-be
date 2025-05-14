@@ -8,13 +8,13 @@ export class Show {
   @Column('varchar')
   name: string
 
-  @Column('text')
+  @Column('text', { nullable: true })
   mark: string
 
-  @Column('varchar')
+  @Column('varchar', { nullable: true })
   img: string
 
-  @Column('varchar')
+  @Column('varchar', { nullable: true })
   link: string
 
   @CreateDateColumn()

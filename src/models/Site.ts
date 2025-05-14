@@ -11,19 +11,19 @@ export class Site {
   @Column('varchar')
   title: string
 
-  @Column('varchar')
+  @Column('varchar', { nullable: true })
   logo: string
 
-  @Column('text')
+  @Column('text', { nullable: true })
   keywords: string
 
-  @Column('text')
+  @Column('text', { nullable: true })
   description: string
 
-  @Column('text')
+  @Column('text', { nullable: true })
   copyright: string
 
-  @Column('text')
+  @Column('text', { nullable: true })
   mobile_copyright: string
 
   @CreateDateColumn()

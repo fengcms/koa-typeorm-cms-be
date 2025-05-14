@@ -8,7 +8,7 @@ export class Tags {
   @Column('varchar')
   tag: string
 
-  @Column('int')
+  @Column('int', { default: 0 })
   channel_id: number
 
   @Column('int', { default: 0 })

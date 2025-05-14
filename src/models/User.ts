@@ -11,16 +11,16 @@ export class User {
   @Column('varchar')
   password: string
 
-  @Column('varchar')
+  @Column('varchar', { nullable: true })
   avatar: string
 
-  @Column('text')
+  @Column('text', { nullable: true })
   mark: string
 
-  @Column('text')
+  @Column('text', { nullable: true })
   signature: string
 
-  @Column({ type: 'enum', enum: ['MALE', 'FEMALE', 'UNKNOWN'] })
+  @Column({ type: 'enum', enum: ['MALE', 'FEMALE', 'UNKNOWN'], default: 'UNKNOWN' })
   sex: string
 
   @Column('varchar', { default: 'MARKDOWN' })
@@ -29,10 +29,10 @@ export class User {
   @Column({ type: 'bigint' })
   mobile: number
 
-  @Column('varchar')
+  @Column('varchar', { nullable: true })
   email: string
 
-  @Column('varchar')
+  @Column('varchar', { nullable: true })
   website: string
 
   @Column('varchar', { default: 'ACTIVE' })

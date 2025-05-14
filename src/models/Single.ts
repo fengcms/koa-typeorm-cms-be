@@ -8,16 +8,16 @@ export class Single {
   @Column('varchar')
   title: string
 
-  @Column('text')
+  @Column('text', { nullable: true })
   description: string
 
-  @Column('text')
+  @Column('text', { nullable: true })
   tags: string
 
-  @Column('text')
+  @Column('text', { nullable: true })
   content: string
 
-  @Column('text')
+  @Column('text', { nullable: true })
   markdown: string
 
   @Column('varchar', { default: 'PENDING' })

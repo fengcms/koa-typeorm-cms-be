@@ -5,19 +5,19 @@ export class Log {
   @PrimaryGeneratedColumn()
   id: number
 
-  @Column('varchar')
+  @Column('varchar', { nullable: true })
   type: string
 
-  @Column('varchar')
+  @Column('varchar', { nullable: true })
   role: string
 
-  @Column('text')
+  @Column('text', { nullable: true })
   mark: string
 
   @Column('int')
   user_id: number
 
-  @Column('varchar')
+  @Column('varchar', { nullable: true })
   user_name: string
 
   @CreateDateColumn()

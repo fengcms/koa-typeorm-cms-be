@@ -14,19 +14,19 @@ export class Channel {
   @Column('int', { default: 0 })
   sort: number
 
-  @Column('varchar')
+  @Column('varchar', { nullable: true })
   keywords: string
 
-  @Column('text')
+  @Column('text', { nullable: true })
   description: string
 
   @Column('varchar', { default: 'PENDING' })
   status: string
 
-  @Column('varchar')
+  @Column('varchar', { nullable: true })
   show_img: string
 
-  @Column('varchar')
+  @Column('varchar', { nullable: true })
   website: string
 
   @CreateDateColumn()

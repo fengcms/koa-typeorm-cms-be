@@ -5,28 +5,28 @@ export class Complaint {
   @PrimaryGeneratedColumn()
   id: number
 
-  @Column('varchar')
+  @Column('varchar', { nullable: true })
   defendant: string
 
-  @Column('varchar')
+  @Column('varchar', { nullable: true })
   problem: string
 
-  @Column('varchar')
+  @Column('varchar', { nullable: true })
   appeal: string
 
-  @Column('varchar')
+  @Column('varchar', { nullable: true })
   img: string
 
-  @Column('text')
+  @Column('text', { nullable: true })
   detail: string
 
   @Column('int')
   user_id: number
 
-  @Column('varchar')
+  @Column('varchar', { nullable: true })
   user_name: string
 
-  @Column('text')
+  @Column('text', { nullable: true })
   reply: string
 
   @Column('varchar', { default: 'PENDING' })

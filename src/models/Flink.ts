@@ -8,13 +8,13 @@ export class Flink {
   @Column('varchar')
   name: string
 
-  @Column('text')
+  @Column('text', { nullable: true })
   mark: string
 
   @Column('int', { default: 0 })
   sort: number
 
-  @Column('varchar')
+  @Column('varchar', { nullable: true })
   link: string
 
   @CreateDateColumn()

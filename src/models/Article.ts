@@ -8,37 +8,37 @@ export class Article {
   @Column('varchar')
   title: string
 
-  @Column('int')
+  @Column('int', { default: 0 })
   channel_id: number
 
-  @Column('text')
+  @Column('text', { nullable: true })
   description: string
 
-  @Column('text')
+  @Column('text', { nullable: true })
   tags: string
 
-  @Column('text')
+  @Column('text', { nullable: true })
   content: string
 
-  @Column('text')
+  @Column('text', { nullable: true })
   markdown: string
 
-  @Column('varchar')
+  @Column('varchar', { nullable: true })
   img: string
 
-  @Column('varchar')
+  @Column('varchar', { nullable: true })
   video: string
 
-  @Column('varchar')
+  @Column('varchar', { nullable: true })
   author: string
 
-  @Column('varchar')
+  @Column('varchar', { nullable: true })
   origin: string
 
-  @Column('varchar')
+  @Column('varchar', { nullable: true })
   editor: string
 
-  @Column('int')
+  @Column('int', { nullable: true })
   user_id: number
 
   @Column('int', { default: 0 })

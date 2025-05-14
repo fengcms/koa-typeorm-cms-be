@@ -14,22 +14,22 @@ export class Editor {
   @Column('varchar')
   name: string
 
-  @Column('varchar')
+  @Column('varchar', { nullable: true })
   avatar: string
 
-  @Column('text')
+  @Column('text', { nullable: true })
   mark: string
 
   @Column('varchar', { default: 'MARKDOWN' })
   editor: string
 
-  @Column({ type: 'bigint' })
+  @Column({ type: 'bigint', nullable: true })
   mobile: number
 
-  @Column('varchar')
+  @Column('varchar', { nullable: true })
   email: string
 
-  @Column('varchar')
+  @Column('varchar', { nullable: true })
   website: string
 
   @CreateDateColumn()

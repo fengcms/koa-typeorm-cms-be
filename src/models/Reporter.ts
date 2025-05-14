@@ -8,25 +8,25 @@ export class Reporter {
   @Column('varchar')
   name: string
 
-  @Column('varchar')
+  @Column('varchar', { nullable: true })
   avatar: string
 
-  @Column('varchar')
+  @Column('varchar', { nullable: true })
   code: string
 
-  @Column('varchar')
+  @Column('varchar', { nullable: true })
   position: string
 
-  @Column('text')
+  @Column('text', { nullable: true })
   mark: string
 
   @Column('varchar', { default: 'MAN' })
   sex: string
 
-  @Column({ type: 'bigint' })
+  @Column({ type: 'bigint', nullable: true })
   mobile: number
 
-  @Column('varchar')
+  @Column('varchar', { nullable: true })
   email: string
 
   @Column('varchar', { default: 'PENDING' })
