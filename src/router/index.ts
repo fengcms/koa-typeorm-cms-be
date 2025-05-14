@@ -1,13 +1,18 @@
 import * as Router from '@koa/router'
-import type { Context } from 'koa'
+import type { Context, Next } from 'koa'
 
 import { ApiPrefix } from '../config'
+import { Core } from '../core'
+import AppDataSource from '../db'
+import * as models from '../models'
+import type { MethodTypes, ModelType, RequestParamsType } from '../types/core'
 import { getJSFile, objKeyLower } from '../utils/tools'
 const extraAPI = getJSFile('../api/extra')
 
 const router = new Router({
   prefix: ApiPrefix,
 })
+
 const calcMethodAndCheckUrl = (id: string, ctx: Context) => {
   const { method } = ctx.request
   let reqMethod = method.toLocaleLowerCase()
@@ -18,10 +23,13 @@ const calcMethodAndCheckUrl = (id: string, ctx: Context) => {
     if (['DELETE', 'PUT'].includes(method)) ctx.throw(405)
     if (method === 'GET') reqMethod = 'ls'
   }
-  return reqMethod
+  return reqMethod as MethodTypes
 }
+
 // 通配符路由
-router.all('(.*)', async (ctx: Context, next) => {
+router.all('(.*)', async (ctx: Context, next: Next) => {
+  // 将 DataSource 挂载到上下文
+  ctx.db = AppDataSource
   const reqPath = ctx.request.path.replace(new RegExp(ApiPrefix), '')
   const [apiName, id, errPath] = reqPath.split('/').map((i) => i.toLowerCase())
   if (errPath) ctx.throw(400, '请求路径不支持')
@@ -29,18 +37,18 @@ router.all('(.*)', async (ctx: Context, next) => {
   const method = calcMethodAndCheckUrl(id, ctx)
   // 根据请求方法整理参数
   const params = method === 'ls' ? objKeyLower(ctx.request.query) : ctx.request.body
-
-  const allParams = { apiName, params, method, id }
+  const modelKey = Object.keys(models).find((key) => key.toLowerCase() === apiName)
+  const allParams: RequestParamsType = { apiName, params, method, id }
   if (extraAPI.includes(apiName)) {
     // 扩展接口直接调用扩展文件并执行
     await require(`../api/extra/${apiName}`).default(ctx, allParams, next)
+  } else if (modelKey) {
+    const model: ModelType = models[modelKey]
+    // 内置接口调用核心处理函数
+    await Core(ctx, model, allParams, next)
   } else {
-    ctx.body = {
-      code: 0,
-      msg: 'Koa server is 22222',
-    }
+    ctx.throw(404, '接口不存在')
   }
-  // console.log(extraAPI)
 })
 
 export default router
