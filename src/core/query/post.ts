@@ -1,8 +1,7 @@
 import type { Context, Next } from 'koa'
 import type { ModelType, RequestParamsType } from '../../types/core'
 
-const post = async (ctx: Context, model: ModelType, allParams: RequestParamsType, next: Next) => {
-  const { params } = allParams
+const post = async (ctx: Context, model: ModelType, params: any, id?: string) => {
   const repository = ctx.db.getRepository(model)
 
   // 判断是否为数组，支持批量添加

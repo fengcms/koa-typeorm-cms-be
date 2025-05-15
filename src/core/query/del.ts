@@ -1,8 +1,7 @@
 import type { Context, Next } from 'koa'
 import type { ModelType, RequestParamsType } from '../../types/core'
 
-const del = async (ctx: Context, model: ModelType, allParams: RequestParamsType, next: Next) => {
-  const { id } = allParams
+const del = async (ctx: Context, model: ModelType, params: any, id?: string) => {
   if (!id) ctx.throw(412, '删除操作必须提供 id')
 
   const repository = ctx.db.getRepository(model)

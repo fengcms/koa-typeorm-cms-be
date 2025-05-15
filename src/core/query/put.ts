@@ -24,8 +24,7 @@ import { succ } from '../../utils/tools'
     每个数据里面必须包含 'id' 字段，否则参数错误
 */
 
-const put = async (ctx: Context, model: ModelType, allParams: RequestParamsType, next: Next) => {
-  const { params, id } = allParams
+const put = async (ctx: Context, model: ModelType, params: any, id: string) => {
   const repository = ctx.db.getRepository(model)
 
   // 1. 未知ID单条数据修改 /xxx/first

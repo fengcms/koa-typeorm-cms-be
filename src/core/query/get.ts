@@ -1,8 +1,7 @@
 import type { Context, Next } from 'koa'
 import type { ModelType, RequestParamsType } from '../../types/core'
 
-const get = async (ctx: Context, model: ModelType, allParams: RequestParamsType, next: Next) => {
-  const { id } = allParams
+const get = async (ctx: Context, model: ModelType, params: any, id: string) => {
   const repository = ctx.db.getRepository(model)
 
   // 获取第一条数据

@@ -25,8 +25,7 @@ const ArgHandle = {
   nnil: () => Not(IsNull()), // 非空查询
 }
 
-const ls = async (ctx: Context, model: ModelType, allParams: RequestParamsType, next: Next) => {
-  const { params } = allParams
+const ls = async (ctx: Context, model: ModelType, params: any, id?: string) => {
   const repository = ctx.db.getRepository(model)
   const PAGE_SIZE = 10 // 默认分页大小
 
