@@ -1,3 +1,4 @@
+import { makeSalt } from '@/utils/tools'
 import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from 'typeorm'
 
 @Entity()
@@ -31,6 +32,9 @@ export class Editor {
 
   @Column('varchar', { nullable: true })
   website: string
+
+  @Column('varchar', { default: makeSalt() })
+  salt: string
 
   @CreateDateColumn()
   time: Date

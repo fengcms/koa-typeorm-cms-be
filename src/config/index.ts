@@ -13,4 +13,9 @@ export const APP_DIR = {
   LOG_DIR: path.resolve(process.cwd(), './log'),
 }
 
-export const SESSION_TYPE = 'memory'
+export const JWT_SECRET = 'secret-key'
+
+export const RSA_KEY = {
+  RSA_PRIVATE_KEY_PATH: path.resolve(process.cwd(), './src/config/key/rsa_private_key.pem'),
+  RSA_PUBLIC_KEY_PATH: path.resolve(process.cwd(), './src/config/key/rsa_public_key.pem'),
+}

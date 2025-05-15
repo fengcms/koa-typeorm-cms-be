@@ -1,3 +1,4 @@
+import { createHash } from 'node:crypto'
 /*
   公共工具方法集合
 */
@@ -149,4 +150,15 @@ export const objToStr = (obj: { [key: string]: string }) => {
   return Object.entries(obj)
     .map(([key, value]) => `${key}-${value}`)
     .join('_')
+}
+
+export const makeSalt = () => {
+  return Math.random().toString(36).substring(2, 10)
+}
+
+// 计算密码哈希值
+export const calcSha256Hash = (str: string) => {
+  const hash = createHash('sha256')
+  hash.update(str)
+  return hash.digest('hex')
 }

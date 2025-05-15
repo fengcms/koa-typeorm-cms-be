@@ -13,3 +13,8 @@ export interface ListDataTypes {
   page: number
   pageSize: number
 }
+
+export interface TokenPayloadTypes {
+  account: string
+  role: 'admin' | 'user' | 'editor'
+}

@@ -1,3 +1,4 @@
+import { makeSalt } from '@/utils/tools'
 import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from 'typeorm'
 
 @Entity()
@@ -40,6 +41,9 @@ export class User {
 
   @Column({ type: 'boolean', default: false })
   isAdmin: boolean
+
+  @Column('varchar', { default: makeSalt() })
+  salt: string
 
   @CreateDateColumn()
   time: Date
