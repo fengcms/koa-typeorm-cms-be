@@ -9,7 +9,6 @@ const afterHandle = getJSFile('../api/restful/after')
 export const Core = async (ctx: Context, model: ModelType, allParams: RequestParamsType, next: Next) => {
   const { method, apiName, params, id } = allParams
   if (beforeHandle.includes(apiName)) {
-    console.log(require(`../api/restful/before/${apiName}`))
     // 如有前处理，加载前处理
     const handle = require(`../api/restful/before/${apiName}`).default[method]
     if (handle) allParams.params = await handle(ctx, allParams, id)
