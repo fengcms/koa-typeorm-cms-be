@@ -1,4 +1,4 @@
-import PERMISSION from '@/config/permission'
+import { getPermission, getRolePermission } from '@/config/permission'
 import { verifyToken } from '@/core/session'
 import type { MethodTypes, UserRoleTypes } from '@/types/core'
 import type { Context } from 'koa'
@@ -11,10 +11,10 @@ export const authentication = async (ctx: Context, apiName: string, method: Meth
   const currentRole: UserRoleTypes =
     ['editor', 'admin', 'user'].includes(tokenRole) && tokenRole !== '' ? tokenRole : 'anyone'
   // 从权限配置名单中，读取对应接口的权限配置
-  const permissionConfig = PERMISSION[apiName]
+  const permissionConfig = getPermission(apiName)
   if (permissionConfig) {
-    const rolePermissions = permissionConfig[currentRole]
-    console.log('rolePermissions', permissionConfig, rolePermissions, method)
+    const rolePermissions = getRolePermission(permissionConfig, currentRole)
+    // console.log('rolePermissions', permissionConfig, rolePermissions, method)
     if (!rolePermissions) ctx.throw(500, '服务端接口权限配置有误')
     if (!rolePermissions.includes(method)) {
       if (currentRole === 'anyone') {

@@ -1,21 +1,24 @@
-// 定义控制方法
-const ls = 'ls'
-const get = 'get'
-const put = 'put'
-const post = 'post'
-const del = 'del'
-// 定义默认权限组
-const nil = []
-const anyone = [ls, get]
-const user = [ls, get]
-const editor = [ls, get, put, post]
-const admin = [ls, get, put, post, del]
+import type { UserRoleTypes } from '@/types/core'
+import type { PermissionConfigType, PermissionMethodType, RolePermissionType } from '@/types/permission'
 
-const normal = { anyone, user, editor, admin }
-const onlyRead = { anyone: [ls], user: [ls], editor: [ls], admin: [ls] }
-const onlyPost = { anyone: [post], user: [post], editor: [post], admin: [post] }
+// 定义控制方法
+const ls: PermissionMethodType = 'ls'
+const get: PermissionMethodType = 'get'
+const put: PermissionMethodType = 'put'
+const post: PermissionMethodType = 'post'
+const del: PermissionMethodType = 'del'
+// 定义默认权限组
+const nil: PermissionMethodType[] = []
+const anyone: PermissionMethodType[] = [ls, get]
+const user: PermissionMethodType[] = [ls, get]
+const editor: PermissionMethodType[] = [ls, get, put, post]
+const admin: PermissionMethodType[] = [ls, get, put, post, del]
+
+const normal: RolePermissionType = { anyone, user, editor, admin }
+const onlyRead: RolePermissionType = { anyone: [ls], user: [ls], editor: [ls], admin: [ls] }
+const onlyPost: RolePermissionType = { anyone: [post], user: [post], editor: [post], admin: [post] }
 // 导出接口权限
-export default {
+const permission: PermissionConfigType = {
   article: { anyone, user: editor, editor, admin },
   channel: normal,
   single: normal,
@@ -51,3 +54,7 @@ export default {
   reporter: { anyone: [get], user: [get], editor: [get], admin },
   get_reporter: { anyone: [ls], user: [ls], editor: [ls], admin: [ls] },
 }
+
+export const getPermission = (apiName: string) => permission[apiName] ?? false
+export const getRolePermission = (permission: RolePermissionType, role: UserRoleTypes) => permission[role] ?? false
+export default permission
