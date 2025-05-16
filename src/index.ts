@@ -3,12 +3,14 @@ import * as bodyParser from 'koa-bodyparser'
 import { HostConfig } from './config'
 import { initDB } from './db'
 import errorHandler from './middlewares/errorHandler'
+import logger from './middlewares/logger'
 import router from './router'
 const app = new Koa()
 // 初始化数据库
 initDB()
 // 错误处理中间件
 app.use(errorHandler)
+app.use(logger())
 // 使用 bodyParser 中间件解析 JSON 请求体
 app.use(bodyParser())
 

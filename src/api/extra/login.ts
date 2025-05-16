@@ -4,10 +4,11 @@ import { decrypt, encrypt } from '@/utils/rsa'
 import { calcSha256Hash, succ } from '@/utils/tools'
 import type { Context } from 'koa'
 
-export default async (ctx: Context, { params }) => {
-  const { account, password, role, method } = params
+export default async (ctx: Context, allParams) => {
+  const { params, method } = allParams
+  const { account, password, role } = params
+  console.log(111, method)
 
-  console.log(method)
   // 校验传参是否为空
   if (!account || !password || !role) ctx.throw(400, '请输入用户名密码')
 

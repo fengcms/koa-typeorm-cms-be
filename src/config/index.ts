@@ -15,6 +15,8 @@ export const APP_DIR = {
 
 export const JWT_SECRET = 'secret-key'
 
+export const ENABLE_REQUEST_LOGGING = false
+
 export const RSA_KEY = {
   RSA_PRIVATE_KEY_PATH: path.resolve(process.cwd(), './src/config/key/rsa_private_key.pem'),
   RSA_PUBLIC_KEY_PATH: path.resolve(process.cwd(), './src/config/key/rsa_public_key.pem'),

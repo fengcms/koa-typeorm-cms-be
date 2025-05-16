@@ -45,6 +45,7 @@ router.all('(.*)', async (ctx: Context, next: Next) => {
 
   const allParams: RequestParamsType = { apiName, params, method, id, currentRole, token }
 
+  // 判断是否为扩展接口，扩展接口直接调用扩展文件并执行，内置接口调用核心处理函数
   if (extraAPI.includes(apiName)) {
     // 扩展接口直接调用扩展文件并执行
     await require(`../api/extra/${apiName}`).default(ctx, allParams, next)
