@@ -19,14 +19,14 @@ const handle = async (ctx: Context, params: any, token: string) => {
   ctx.throw(400, 'token 无效')
 }
 export default {
-  async post(ctx: Context, allParams: RequestParamsType) {
+  post: async (ctx: Context, allParams: RequestParamsType) => {
     const { params, currentRole, token } = allParams
     if (currentRole === 'user') {
       return await handle(ctx, params, token)
     }
     return params
   },
-  async put(ctx: Context, allParams: RequestParamsType) {
+  put: async (ctx: Context, allParams: RequestParamsType) => {
     const { params, currentRole, token, id } = allParams
     const complaintInfo = await getItem(ctx, 'Complaint', id)
     if (!complaintInfo) ctx.throw(404, '404')

@@ -20,7 +20,7 @@ const calcFileExt = (path: string) => {
       const buf = Buffer.from(imageBufferHeader.bufBegin)
       isEqual = buf.equals(
         // 使用 buffer.slice 方法 对 buffer 以字节为单位切割
-        fileBuffer.slice(0, imageBufferHeader.bufBegin.length),
+        Buffer.from(fileBuffer).subarray(0, imageBufferHeader.bufBegin.length),
       )
     }
 
@@ -42,11 +42,9 @@ const calcSavePath = (hash: string, fileExt: string) => {
 }
 const saveFile = (ctx: Context, file: any) => {
   const { filepath: path, hash } = file
-  console.log('file', hash, path)
   const fileExt = calcFileExt(path)
   if (!fileExt) ctx.throw(415, '仅支持 png/jpg/gif/bmp 等图片文件格式')
   const [saveDir, savePath, returnPath] = calcSavePath(hash, fileExt)
-  console.log('file', 222)
   return new Promise((resolve, reject) => {
     makeDir(saveDir).then(() => {
       moveFile(path, savePath).then(() => {
