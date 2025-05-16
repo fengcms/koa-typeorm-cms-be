@@ -6,6 +6,12 @@ Steps to run this project:
 2. Setup database settings inside `data-source.ts` file
 3. Run `npm start` command
 
+## Make RSA Key
+```
+openssl genrsa -out src/config/key/rsa_private_key.pem 1024
+openssl rsa -in src/config/key/rsa_private_key.pem -pubout -out src/config/key/rsa_public_key.pem
+```
+
 ## Test Curl
 
 ```
@@ -16,6 +22,8 @@ curl localhost:3000/api/v1/article/first -X PUT -H "Content-Type:application/jso
 curl localhost:3000/api/v1/article/1 -X PUT -H "Content-Type:application/json" -d '{"title":"新标题"}'
 curl localhost:3000/api/v1/article/1,2,3 -X PUT -H "Content-Type:application/json" -d '{"status":"DELETED"}'
 curl localhost:3000/api/v1/article/batch -X PUT -H "Content-Type:application/json" -d '[{"id":1,"title":"新标题1"},{"id":2,"title":"新标题2"}]'
-curl localhost:3000/api/v1/manages -X POST -H "Content-Type:application/json" -d '{"account":"admin","password":"RdlP1t07VcJSuFOUh+5CXT1PDQBDzrWqsn0LHJyndc6hzmmRCUjzI3Ag091znGMjHGtdvkSsCLQ154QmS+lUPfy+i5b2w5iWai3Ty+brTYtHkdJD1HENqsCVhC/UNLp+I73nrsdz7JHR2/hkNkEpYRi5+DBYr73Dxa2FR3A2//eMoL8h8B/x0BQD28GwDiWJE6Z2/GX9mXCF2d41u3RycYCAKI7XlCATGO5Q1gmMLZNWE5jhNLSkxCO2eMk8T+YRrI7z5YGiHAiUmXdu8GMhPxPqWWdyes5j9v9U6CuV9DbqhcXV93crEFaR6SD45X0Do8aVKlZNcTbpdy3bubiuPg=="}'
+curl localhost:3000/api/v1/manages -X POST -H "Content-Type:application/json" -d '{"account":"fungleo","name":"FungLeo","password":"OOSzmYc6hqzyuErV2HUcpI91fjGJHrjTpsaQ8lNOn69Z+Y3dtaTqtRHozW+mPLfIbOIv2lW2o4lvF2X+VXE5v2R5gt0ogr6MzBlUu1fDk/me4k/cHUm/u+qUfg02iXuCRyoNAgyY32KOgCioO1A32BKOpsbcBQ0CFUcRCO19X88="}'
 curl localhost:3000/api/v1/manages/1 -X DELETE 
+curl localhost:3000/api/v1/manages\?password=123456 
+curl localhost:3000/api/v1/manages/3 -X PUT -H "Content-Type:application/json" -d '{"account":"test","password":"2222"}'
 ```

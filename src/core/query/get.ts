@@ -3,7 +3,7 @@ import type { ModelType, RequestParamsType } from '../../types/core'
 
 const get = async (ctx: Context, model: ModelType, params: any, id: string) => {
   const repository = ctx.db.getRepository(model)
-
+  console.log(id)
   // 获取第一条数据
   if (id === 'first') {
     const record = await repository.findOne({
@@ -11,7 +11,7 @@ const get = async (ctx: Context, model: ModelType, params: any, id: string) => {
       order: { id: 'ASC' },
     })
     if (!record) ctx.throw(404, '没有找到数据')
-    return record
+    return record as any
   }
 
   // 通过 ID 获取单条数据
@@ -20,7 +20,7 @@ const get = async (ctx: Context, model: ModelType, params: any, id: string) => {
       where: { id: Number.parseInt(id) },
     })
     if (!record) ctx.throw(404, '没有找到数据')
-    return record
+    return record as any
   }
 
   ctx.throw(400, '不支持的获取方式')
