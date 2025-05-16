@@ -2,7 +2,7 @@ import { getItem } from '@/core/query'
 import type { RequestParamsType } from '@/types/core'
 import type { Context } from 'koa'
 
-module.exports = {
+export default {
   post: async (ctx: Context, allParams: RequestParamsType) => {
     const { params } = allParams
     const { account, name } = params

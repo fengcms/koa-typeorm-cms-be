@@ -13,7 +13,7 @@ const checkParams = async (ctx: Context, { account, name, password, editor }) =>
   if (editor && !['MARKDOWN', 'RICHEDITOR'].includes(editor)) ctx.throw(400, '个人编辑器参数有误')
 }
 
-module.exports = {
+export default {
   post: async (ctx: Context, allParams: RequestParamsType) => {
     const { params } = allParams
     const { password, account } = params
