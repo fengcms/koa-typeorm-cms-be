@@ -40,4 +40,6 @@ curl localhost:3000/api/v1/article -X POST -H "Content-Type:application/json"  -
 
 curl localhost:3000/api/v1/upload -F "file=@/Users/fungleo/Downloads/huxing.jpg" -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW4iLCJhY2NvdW50IjoiZnVuZ2xlbyIsImlkIjo0LCJpYXQiOjE3NDc0MDEyOTksImV4cCI6MTc0NzQ4NzY5OX0.3PvWgj-nDyTMQhr59DK7oKMuTTvw1_7YVrhWP6W4fCM"
 
+$ curl localhost:3000/api/v1/users  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW4iLCJhY2NvdW50IjoiZnVuZ2xlbyIsImlkIjo0LCJpYXQiOjE3NDc0MDEyOTksImV4cCI6MTc0NzQ4NzY5OX0.3PvWgj-nDyTMQhr59DK7oKMuTTvw1_7YVrhWP6W4fCM"
+
 ```
