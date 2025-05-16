@@ -12,6 +12,11 @@ openssl genrsa -out src/config/key/rsa_private_key.pem 1024
 openssl rsa -in src/config/key/rsa_private_key.pem -pubout -out src/config/key/rsa_public_key.pem
 ```
 
+## Login
+```
+curl localhost:3000/api/v1/login -X POST -H "Content-Type:application/json" -d '{"account":"fungleo","password":"OOSzmYc6hqzyuErV2HUcpI91fjGJHrjTpsaQ8lNOn69Z+Y3dtaTqtRHozW+mPLfIbOIv2lW2o4lvF2X+VXE5v2R5gt0ogr6MzBlUu1fDk/me4k/cHUm/u+qUfg02iXuCRyoNAgyY32KOgCioO1A32BKOpsbcBQ0CFUcRCO19X88=", "role":"admin"}'
+```
+
 ## Test Curl
 
 ```
@@ -26,4 +31,5 @@ curl localhost:3000/api/v1/manages -X POST -H "Content-Type:application/json" -d
 curl localhost:3000/api/v1/manages/1 -X DELETE 
 curl localhost:3000/api/v1/manages\?password=123456 
 curl localhost:3000/api/v1/manages/3 -X PUT -H "Content-Type:application/json" -d '{"account":"test","password":"2222"}'
+curl localhost:3000/api/v1/login -X POST -H "Content-Type:application/json" -d '{"account":"fungleo","password":"OOSzmYc6hqzyuErV2HUcpI91fjGJHrjTpsaQ8lNOn69Z+Y3dtaTqtRHozW+mPLfIbOIv2lW2o4lvF2X+VXE5v2R5gt0ogr6MzBlUu1fDk/me4k/cHUm/u+qUfg02iXuCRyoNAgyY32KOgCioO1A32BKOpsbcBQ0CFUcRCO19X88=", "role":"admin"}'
 ```
