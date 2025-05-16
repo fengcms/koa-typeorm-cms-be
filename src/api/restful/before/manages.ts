@@ -1,4 +1,5 @@
 import { getItem, getList } from '@/core/query'
+import type { RequestParamsType } from '@/types/core'
 import { decrypt, encrypt } from '@/utils/rsa'
 import { calcSha256Hash, makeSalt } from '@/utils/tools'
 import type { Context } from 'koa'
@@ -20,7 +21,8 @@ const checkParams = async (ctx: Context, { account, name, password, editor }) =>
 }
 
 export default {
-  post: async (ctx: Context, params: any) => {
+  post: async (ctx: Context, allParams: RequestParamsType) => {
+    const { params } = allParams
     const { account } = params
     const dePassword = await checkParams(ctx, params)
     if (!dePassword) {
@@ -38,20 +40,23 @@ export default {
 
     return params
   },
-  put: async (ctx: Context, params: any) => {
+  put: async (ctx: Context, allParams: RequestParamsType) => {
+    const { params } = allParams
     params.password = undefined
     params.salt = undefined
     return params
   },
-  ls: async (ctx: Context, params: any) => {
-    const { password } = params
+  ls: async (ctx: Context, allParams: RequestParamsType) => {
+    const { params } = allParams
+    // const { password } = params
 
-    const dePassword = await encrypt(password)
-    console.log(dePassword)
+    // const dePassword = await encrypt(password)
+    // console.log(dePassword)
 
     return params
   },
-  del: async (ctx: Context, params: any, id: string) => {
+  del: async (ctx: Context, allParams: RequestParamsType, id: string) => {
+    const { params } = allParams
     // 校验是否是自己
     const userInfo = await getItem(ctx, 'Manages', id)
     if (userInfo.account === params.account) ctx.throw(400, '不能删除自己哦！')

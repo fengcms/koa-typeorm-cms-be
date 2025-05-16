@@ -1,6 +1,7 @@
 import * as Koa from 'koa'
-import * as bodyParser from 'koa-bodyparser'
+import { koaBody } from 'koa-body'
 import { HostConfig } from './config'
+import { koaBodyConfig } from './config/koaBody'
 import { initDB } from './db'
 import errorHandler from './middlewares/errorHandler'
 import logger from './middlewares/logger'
@@ -12,7 +13,7 @@ initDB()
 app.use(errorHandler)
 app.use(logger())
 // 使用 bodyParser 中间件解析 JSON 请求体
-app.use(bodyParser())
+app.use(koaBody(koaBodyConfig))
 
 // 注册路由
 app.use(router.routes())

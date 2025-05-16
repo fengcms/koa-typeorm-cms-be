@@ -1,13 +1,13 @@
 import { getItem } from '@/core/query'
 import { createToken } from '@/core/session'
-import { decrypt, encrypt } from '@/utils/rsa'
+import type { RequestParamsType } from '@/types/core'
+import { decrypt } from '@/utils/rsa'
 import { calcSha256Hash, succ } from '@/utils/tools'
 import type { Context } from 'koa'
 
-export default async (ctx: Context, allParams) => {
-  const { params, method } = allParams
+export default async (ctx: Context, allParams: RequestParamsType) => {
+  const { params } = allParams
   const { account, password, role } = params
-  console.log(111, method)
 
   // 校验传参是否为空
   if (!account || !password || !role) ctx.throw(400, '请输入用户名密码')
