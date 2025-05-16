@@ -5,7 +5,9 @@ import { calcSha256Hash, succ } from '@/utils/tools'
 import type { Context } from 'koa'
 
 export default async (ctx: Context, { params }) => {
-  const { account, password, role } = params
+  const { account, password, role, method } = params
+
+  console.log(method)
   // 校验传参是否为空
   if (!account || !password || !role) ctx.throw(400, '请输入用户名密码')
 
