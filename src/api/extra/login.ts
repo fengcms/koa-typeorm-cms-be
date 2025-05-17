@@ -17,6 +17,10 @@ export default async (ctx: Context, allParams: RequestParamsType) => {
 
   // 校验传入密码是否能解密，如能解密则赋值 reqPw
   const reqPw = await decrypt(password).catch((e) => ctx.throw(400, '用户名密码错误'))
+  const test = await decrypt(
+    'pGlReR0bJ/2PFcz5r4L+f0h+KEM/2Rq+eoYWb5qKThOgX8dYPy7zxQB/2CbrPKRLa1VT+GQZmGRhAyuc7b3vpiLNmTjXet0F6GPayCEKyL5yQWPsxAKXdNmyve9nJfl5HciUkpI3NuELn11JeOVjvyNF4WTl81OmTfEi6iarHgs=',
+  ).catch((e) => ctx.throw(400, '用户名密码错误2'))
+  console.log('test', test)
   // 从数据库存储用户信息，根据不同角色，从不同表内读取
 
   const sheet = {
