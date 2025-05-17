@@ -9,6 +9,8 @@ import router from './router'
 const app = new Koa()
 // 初始化数据库
 initDB()
+// 引入缓存
+global.cache = {}
 // 错误处理中间件
 app.use(errorHandler)
 app.use(logger())
