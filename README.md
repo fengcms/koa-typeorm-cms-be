@@ -42,8 +42,14 @@ curl localhost:3000/api/v1/upload -F "file=@/Users/fungleo/Downloads/huxing.jpg"
 
 curl localhost:3000/api/v1/users  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW4iLCJhY2NvdW50IjoiYWRtaW4iLCJpZCI6NCwidGltZSI6IjIwMjUtMDUtMThUMDU6NDc6MDEuMjYyWiIsImlhdCI6MTc0NzU0NzIyMSwiZXhwIjoxNzQ3NjMzNjIxfQ.pfj-m07nAhJ6otlsnAxESBbUPiWdfHYMeUdYbZI6Np8"
 
-curl localhost:3000/api/v1/profile  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW4iLCJhY2NvdW50IjoiYWRtaW4iLCJpZCI6NCwidGltZSI6IjIwMjUtMDUtMThUMDU6NDc6MDEuMjYyWiIsImlhdCI6MTc0NzU0NzIyMSwiZXhwIjoxNzQ3NjMzNjIxfQ.pfj-m07nAhJ6otlsnAxESBbUPiWdfHYMeUdYbZI6Np8"
+curl localhost:3000/api/v1/profile  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW4iLCJhY2NvdW50IjoiYWRtaW4iLCJpZCI6NCwidGltZSI6IjIwMjUtMDUtMThUMDc6Mjk6NTEuODQ4WiIsImlhdCI6MTc0NzU1MzM5MSwiZXhwIjoxNzQ3NjM5NzkxfQ.cjG_NUa_q7rAG0pWfMHZ4jw7tOTo2mk6ySZClwAn0yk"
 
 curl localhost:3000/api/v1/tree_channel
 
+{
+    "status": 0,
+    "data": {
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW4iLCJhY2NvdW50IjoiYWRtaW4iLCJpZCI6NCwidGltZSI6IjIwMjUtMDUtMThUMDc6Mjk6NTEuODQ4WiIsImlhdCI6MTc0NzU1MzM5MSwiZXhwIjoxNzQ3NjM5NzkxfQ.cjG_NUa_q7rAG0pWfMHZ4jw7tOTo2mk6ySZClwAn0yk"
+    }
+}
 ```
