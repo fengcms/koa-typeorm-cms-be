@@ -11,29 +11,20 @@ const checkParams = async (ctx: Context, { account, name, password, editor }) =>
   if (!name) ctx.throw(400, '超级管理员姓名不能为空')
   // 校验编辑器参数
   if (editor && !['MARKDOWN', 'RICHEDITOR'].includes(editor)) ctx.throw(400, '个人编辑器参数有误')
-  // 校验传入密码是否能 RSA 解密
-  if (password) {
-    const dePassword = await decrypt(password).catch((e) =>
-      ctx.throw(400, '超级管理员登录密码有误，请检查客户端RSA配置'),
-    )
-    return dePassword
-  }
 }
 
 export default {
   post: async (ctx: Context, allParams: RequestParamsType) => {
     const { params } = allParams
-    const { account } = params
-    const dePassword = await checkParams(ctx, params)
-    if (!dePassword) {
-      ctx.throw(400, '超级管理员密码不能为空')
-    }
+    const { account, password } = params
+    await checkParams(ctx, params)
+
     const hasManage = await getItem(ctx, 'Manages', { account })
     if (hasManage) {
       ctx.throw(401, '账号已存在')
     }
     const salt = makeSalt()
-    const hashedPassword = calcSha256Hash(`${dePassword}${salt}`)
+    const hashedPassword = calcSha256Hash(`${password}${salt}`)
     // 将原始密码替换为哈希后的密码
     params.password = hashedPassword
     params.salt = salt
@@ -46,15 +37,7 @@ export default {
     params.salt = undefined
     return params
   },
-  ls: async (ctx: Context, allParams: RequestParamsType) => {
-    const { params } = allParams
-    // const { password } = params
 
-    // const dePassword = await encrypt(password)
-    // console.log(dePassword)
-
-    return params
-  },
   del: async (ctx: Context, allParams: RequestParamsType, id: string) => {
     const { params } = allParams
     // 校验是否是自己
