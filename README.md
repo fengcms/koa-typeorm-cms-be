@@ -8,7 +8,7 @@ Steps to run this project:
 
 ## Make RSA Key
 ```
-openssl genrsa -out src/config/key/rsa_private_key.pem 1024
+openssl genrsa -out src/config/key/rsa_private_key.pem 2048
 openssl rsa -in src/config/key/rsa_private_key.pem -pubout -out src/config/key/rsa_public_key.pem
 ```
 
