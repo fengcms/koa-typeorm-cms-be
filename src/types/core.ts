@@ -22,4 +22,5 @@ export interface TokenPayloadTypes {
   account: string
   role: 'admin' | 'user' | 'editor'
   id: number | string
+  time: Date
 }

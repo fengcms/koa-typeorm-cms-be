@@ -30,16 +30,20 @@ curl localhost:3000/api/v1/article/batch -X PUT -H "Content-Type:application/jso
 curl localhost:3000/api/v1/manages -X POST -H "Content-Type:application/json" -d '{"account":"fungleo","name":"FungLeo","password":"OOSzmYc6hqzyuErV2HUcpI91fjGJHrjTpsaQ8lNOn69Z+Y3dtaTqtRHozW+mPLfIbOIv2lW2o4lvF2X+VXE5v2R5gt0ogr6MzBlUu1fDk/me4k/cHUm/u+qUfg02iXuCRyoNAgyY32KOgCioO1A32BKOpsbcBQ0CFUcRCO19X88="}'
 curl localhost:3000/api/v1/manages/1 -X DELETE 
 curl localhost:3000/api/v1/manages\?password=123456 
-curl localhost:3000/api/v1/article -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW4iLCJhY2NvdW50IjoiZnVuZ2xlbyIsImlkIjo0LCJpYXQiOjE3NDc0MDEyOTksImV4cCI6MTc0NzQ4NzY5OX0.3PvWgj-nDyTMQhr59DK7oKMuTTvw1_7YVrhWP6W4fCM"
+curl localhost:3000/api/v1/article -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW4iLCJhY2NvdW50IjoiYWRtaW4iLCJpZCI6NCwidGltZSI6IjIwMjUtMDUtMThUMDU6NDc6MDEuMjYyWiIsImlhdCI6MTc0NzU0NzIyMSwiZXhwIjoxNzQ3NjMzNjIxfQ.pfj-m07nAhJ6otlsnAxESBbUPiWdfHYMeUdYbZI6Np8"
 curl localhost:3000/api/v1/manages/3 -X PUT -H "Content-Type:application/json" -d '{"account":"test","password":"2222"}'
 curl localhost:3000/api/v1/login -X POST -H "Content-Type:application/json" -d '{"account":"fungleo","password":"OOSzmYc6hqzyuErV2HUcpI91fjGJHrjTpsaQ8lNOn69Z+Y3dtaTqtRHozW+mPLfIbOIv2lW2o4lvF2X+VXE5v2R5gt0ogr6MzBlUu1fDk/me4k/cHUm/u+qUfg02iXuCRyoNAgyY32KOgCioO1A32BKOpsbcBQ0CFUcRCO19X88=", "role":"admin"}'
 
 
 
-curl localhost:3000/api/v1/article -X POST -H "Content-Type:application/json"  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW4iLCJhY2NvdW50IjoiZnVuZ2xlbyIsImlkIjo0LCJpYXQiOjE3NDc0MDEyOTksImV4cCI6MTc0NzQ4NzY5OX0.3PvWgj-nDyTMQhr59DK7oKMuTTvw1_7YVrhWP6W4fCM" -d '{"title":"comewords","content":"articleContent","channel_id": 1}'
+curl localhost:3000/api/v1/article -X POST -H "Content-Type:application/json"  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW4iLCJhY2NvdW50IjoiYWRtaW4iLCJpZCI6NCwidGltZSI6IjIwMjUtMDUtMThUMDU6NDc6MDEuMjYyWiIsImlhdCI6MTc0NzU0NzIyMSwiZXhwIjoxNzQ3NjMzNjIxfQ.pfj-m07nAhJ6otlsnAxESBbUPiWdfHYMeUdYbZI6Np8" -d '{"title":"comewords","content":"articleContent","channel_id": 1}'
 
-curl localhost:3000/api/v1/upload -F "file=@/Users/fungleo/Downloads/huxing.jpg" -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW4iLCJhY2NvdW50IjoiZnVuZ2xlbyIsImlkIjo0LCJpYXQiOjE3NDc0MDEyOTksImV4cCI6MTc0NzQ4NzY5OX0.3PvWgj-nDyTMQhr59DK7oKMuTTvw1_7YVrhWP6W4fCM"
+curl localhost:3000/api/v1/upload -F "file=@/Users/fungleo/Downloads/huxing.jpg" -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW4iLCJhY2NvdW50IjoiYWRtaW4iLCJpZCI6NCwidGltZSI6IjIwMjUtMDUtMThUMDU6NDc6MDEuMjYyWiIsImlhdCI6MTc0NzU0NzIyMSwiZXhwIjoxNzQ3NjMzNjIxfQ.pfj-m07nAhJ6otlsnAxESBbUPiWdfHYMeUdYbZI6Np8"
 
-$ curl localhost:3000/api/v1/users  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW4iLCJhY2NvdW50IjoiZnVuZ2xlbyIsImlkIjo0LCJpYXQiOjE3NDc0MDEyOTksImV4cCI6MTc0NzQ4NzY5OX0.3PvWgj-nDyTMQhr59DK7oKMuTTvw1_7YVrhWP6W4fCM"
+curl localhost:3000/api/v1/users  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW4iLCJhY2NvdW50IjoiYWRtaW4iLCJpZCI6NCwidGltZSI6IjIwMjUtMDUtMThUMDU6NDc6MDEuMjYyWiIsImlhdCI6MTc0NzU0NzIyMSwiZXhwIjoxNzQ3NjMzNjIxfQ.pfj-m07nAhJ6otlsnAxESBbUPiWdfHYMeUdYbZI6Np8"
+
+curl localhost:3000/api/v1/profile  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW4iLCJhY2NvdW50IjoiYWRtaW4iLCJpZCI6NCwidGltZSI6IjIwMjUtMDUtMThUMDU6NDc6MDEuMjYyWiIsImlhdCI6MTc0NzU0NzIyMSwiZXhwIjoxNzQ3NjMzNjIxfQ.pfj-m07nAhJ6otlsnAxESBbUPiWdfHYMeUdYbZI6Np8"
+
+curl localhost:3000/api/v1/tree_channel
 
 ```

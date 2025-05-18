@@ -33,7 +33,7 @@ export default async (ctx: Context, allParams: RequestParamsType) => {
   if (dbUser.password !== hashedPassword) ctx.throw(400, '用户名密码错误')
 
   // 用户通过校验
-  const token = createToken({ role, account, id: dbUser.id })
+  const token = createToken({ role, account, id: dbUser.id, time: new Date() })
   // 移除 cookies 设置功能
   // ctx.cookies.set('token', token, { httpOnly: true })
   ctx.body = succ({ token })
