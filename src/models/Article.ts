@@ -23,7 +23,7 @@ export class Article {
   @Column('text', { nullable: true })
   markdown: string
 
-  @Column('varchar', { default: '', nullable: true })
+  @Column('varchar', { default: '' })
   img: string
 
   @Column('varchar', { default: '' })
