@@ -30,7 +30,7 @@ export default async (ctx: Context) => {
 
   const hasSite = await getItem(ctx, 'Site', 'first')
   console.log('hasSite', hasSite)
-  if (!hasSite) {
+  if ('err' in hasSite) {
     postItem(ctx, 'Site', {
       name: 'FengCMS By FungLeo',
       title: 'FengCMS By FungLeo',
@@ -42,15 +42,19 @@ export default async (ctx: Context) => {
     })
   }
   const hasChan = await getItem(ctx, 'Channel', 'first')
-  if (!hasChan) {
+  if ('err' in hasChan) {
     const calcchannelMockDat = (pid, pre = '顶级') => {
       return 'leo'.split('').map((i, index) => {
         return { pid, name: `${pre}栏目${pid}${index}` }
       })
     }
-    const { id } = await postItem(ctx, 'Channel', calcchannelMockDat(0))
+    const postData = await postItem(ctx, 'Channel', calcchannelMockDat(0))
+    if ('err' in postData) return
+    const { id } = postData
     for (const i of id) {
-      const { id: secondLevelIds } = await postItem(ctx, 'Channel', calcchannelMockDat(i, '二级'))
+      const sData = await postItem(ctx, 'Channel', calcchannelMockDat(i, '二级'))
+      if ('err' in sData) return
+      const { id: secondLevelIds } = sData
       for (const i of secondLevelIds) {
         await postItem(ctx, 'Channel', calcchannelMockDat(i, '三级'))
       }

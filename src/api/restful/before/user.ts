@@ -16,6 +16,7 @@ export default {
     const { params, id } = allParams
     const { account } = params
     const oldUser = await getItem(ctx, 'User', id)
+    if ('err' in oldUser) ctx.throw(500, '服务器异常')
     if (oldUser.account !== account) ctx.throw(400, '登录账号不能修改！')
 
     return params

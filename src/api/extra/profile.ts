@@ -26,7 +26,7 @@ export default async (ctx: Context, allParams: RequestParamsType, next) => {
   if (['ls', 'get'].includes(method)) {
     // 读取账户信息
     const userInfo = await getItem(ctx, modelKey, id)
-    if (!userInfo) ctx.throw(500, '账户数据存在异常')
+    if ('err' in userInfo) ctx.throw(500, '账户数据存在异常')
     // 如果会员注册超过24小时，并且尚未审核，则自动调整为通过审核状态
     if (role === 'user' && userInfo.status === 'PENDING' && +new Date() - userInfo.time > 1000 * 60 * 60 * 24) {
       await putItem(ctx, 'User', { status: 'NORMAL' }, id)
@@ -47,6 +47,7 @@ export default async (ctx: Context, allParams: RequestParamsType, next) => {
 
     // 个人用户修改信息时的特殊管理
     const userInfo = await getItem(ctx, modelKey, id)
+    if ('err' in userInfo) ctx.throw(500, '账户数据存在异常')
     if (role === 'user') {
       if (userInfo.name != null && params.name !== userInfo.name) ctx.throw(400, '用户名称不允许修改')
       params.status = userInfo.status

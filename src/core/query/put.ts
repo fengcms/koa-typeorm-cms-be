@@ -1,7 +1,7 @@
+import type { ModelType, RequestParamsType } from '@/types/core'
+import { err, succ } from '@/utils/tools'
 import type { Context, Next } from 'koa'
 import { In } from 'typeorm'
-import type { ModelType, RequestParamsType } from '../../types/core'
-import { succ } from '../../utils/tools'
 
 /*
   更新数据方法
@@ -35,9 +35,10 @@ const put = async (ctx: Context, model: ModelType, params: any, id: string) => {
     })
     if (!firstRecord) ctx.throw(404, '没有找到数据')
     const updateData = { ...firstRecord, ...params }
-    const savedEntity = await repository.save(updateData).catch((err: any) => {
-      ctx.throw(500, err)
+    const savedEntity = await repository.save(updateData).catch((error: any) => {
+      return err(500, error)
     })
+    if ('err' in savedEntity) return savedEntity
     return { id: savedEntity.id }
   }
 
@@ -48,9 +49,10 @@ const put = async (ctx: Context, model: ModelType, params: any, id: string) => {
     })
     if (!record) ctx.throw(404, '没有找到数据')
     const updateData = { ...record, ...params }
-    const savedEntity = await repository.save(updateData).catch((err: any) => {
-      ctx.throw(500, err)
+    const savedEntity = await repository.save(updateData).catch((error: any) => {
+      return err(500, error)
     })
+    if ('err' in savedEntity) return savedEntity
     return { id: savedEntity.id }
   }
 
@@ -60,9 +62,10 @@ const put = async (ctx: Context, model: ModelType, params: any, id: string) => {
     const records = await repository.findBy({ id: In(ids) })
     if (!records.length) ctx.throw(404, '没有找到数据')
     const updateData = records.map((record) => ({ ...record, ...params }))
-    const savedEntities = await repository.save(updateData).catch((err: any) => {
-      ctx.throw(500, err)
+    const savedEntities = await repository.save(updateData).catch((error: any) => {
+      return err(500, error)
     })
+    if ('err' in savedEntities) return savedEntities
     return { id: savedEntities.map((entity) => entity.id) }
   }
 
@@ -82,13 +85,14 @@ const put = async (ctx: Context, model: ModelType, params: any, id: string) => {
       return { ...record, ...newData }
     })
 
-    const savedEntities = await repository.save(updateData).catch((err: any) => {
-      ctx.throw(500, err)
+    const savedEntities = await repository.save(updateData).catch((error: any) => {
+      return err(500, error)
     })
+    if ('err' in savedEntities) return savedEntities
     return { id: savedEntities.map((entity) => entity.id) }
   }
 
-  ctx.throw(400, '不支持的更新方式')
+  return err(400, '不支持的更新方式')
 }
 
 export default put

@@ -1,6 +1,7 @@
+import * as models from '@/models'
+import type { DetailDataTypes } from '@/types/core'
+import { toType } from '@/utils/tools'
 import type { Context } from 'koa'
-import * as models from '../../models'
-import { toType } from '../../utils/tools'
 import del from './del'
 import get from './get'
 import ls from './ls'
@@ -17,8 +18,9 @@ export const getItem = async (ctx: Context, modelKey: string, params: any) => {
   const model = models[modelKey]
   if (toType(params) === 'object') {
     const res = await ls(ctx, model, params)
+    if ('err' in res) return null
     if (res.list.length) {
-      return res.list[0]
+      return res.list[0] as DetailDataTypes
     }
     return null
   }

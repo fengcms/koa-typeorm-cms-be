@@ -7,7 +7,9 @@ const handle = async (ctx: Context, params: any, token: string) => {
   const tokenData = verifyToken(token)
   if (tokenData) {
     const { id: userId } = tokenData
-    const { name, status } = await getItem(ctx, 'User', userId)
+    const userDetail = await getItem(ctx, 'User', userId)
+    if ('err' in userDetail) ctx.throw(400, '你的账号状态异常！')
+    const { name, status } = userDetail
     if (status === 'PENDING') ctx.throw(400, '你的账号还没有通过审核，通过审核后，才能投诉建议哦！')
     if (status === 'FAILURE') ctx.throw(400, '你的账号已被禁用！')
     if (status !== 'NORMAL') ctx.throw(400, '你的账号状态异常！')
@@ -29,7 +31,7 @@ export default {
   put: async (ctx: Context, allParams: RequestParamsType) => {
     const { params, currentRole, token, id } = allParams
     const complaintInfo = await getItem(ctx, 'Complaint', id)
-    if (!complaintInfo) ctx.throw(404, '404')
+    if ('err' in complaintInfo) ctx.throw(404, '404')
     const { status } = complaintInfo
 
     if (currentRole === 'user') {

@@ -18,6 +18,15 @@ export interface ListDataTypes {
   pageSize: number
 }
 
+export type DetailDataTypes = Record<string, any>
+
+export interface CoreErrorTypes {
+  err: {
+    code: number
+    msg: string
+  }
+}
+
 export interface TokenPayloadTypes {
   account: string
   role: 'admin' | 'user' | 'editor'

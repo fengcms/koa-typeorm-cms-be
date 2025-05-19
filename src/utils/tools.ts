@@ -40,6 +40,11 @@ export const fail = (msg: string, status = 1) => {
     msg,
   }
 }
+
+export const err = (code: number, msg: string) => {
+  return { err: { code, msg } }
+}
+
 // 检查操作目录是否在项目根目录下
 export const isInRootPath = (path: string) => {
   const rootPath = process.cwd()

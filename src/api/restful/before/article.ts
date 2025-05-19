@@ -19,19 +19,22 @@ const articleHandle = async (
 
   if (method === 'put') {
     const sArticle = await getItem(ctx, 'Article', id)
-    if (!sArticle) ctx.throw(400, '您要编辑的文章不存在')
-    const { status } = sArticle
-    if (status === 'PENDING') ctx.throw(400, '该文章正在审核中，审核通过后才能修改')
-    if (status === 'FAILURE') ctx.throw(400, '该文章审核未通过，无法修改')
+    if ('err' in sArticle) ctx.throw(400, '您要编辑的文章不存在')
     if (roleName === 'user') {
-      const { user_id: articleUserId } = await getItem(ctx, 'Article', id)
+      const { status } = sArticle
+
+      if (status === 'PENDING') ctx.throw(400, '该文章正在审核中，审核通过后才能修改')
+      if (status === 'FAILURE') ctx.throw(400, '该文章审核未通过，无法修改')
+      const { user_id: articleUserId } = sArticle
       if (Number(userId) !== articleUserId) ctx.throw(400, '您没有权限修改别人的文章')
     }
   }
 
   if (roleName === 'user') {
     // 针对会员的权限特殊处理
-    const { name, status } = await getItem(ctx, 'User', userId)
+    const userDetail = await getItem(ctx, 'User', userId)
+    if ('err' in userDetail) ctx.throw(400, '你的账号状态异常！')
+    const { name, status } = userDetail
     if (status === 'PENDING') ctx.throw(400, '你的账号还没有通过审核，通过审核后，才能投稿哦！')
     if (status === 'FAILURE') ctx.throw(400, '你的账号已被禁用！')
     if (status !== 'NORMAL') ctx.throw(400, '你的账号状态异常！')
@@ -43,7 +46,9 @@ const articleHandle = async (
 
   // 针对编辑的特殊权限处理
   if (roleName === 'editor') {
-    const { name } = await getItem(ctx, 'Editor', userId)
+    const editorDetail = await getItem(ctx, 'Editor', userId)
+    if ('err' in editorDetail) ctx.throw(400, '你的账号状态异常！')
+    const { name } = editorDetail
     params.editor = name
   }
 

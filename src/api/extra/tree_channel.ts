@@ -15,7 +15,9 @@ export default async (ctx: Context, allParams: RequestParamsType) => {
     return
   }
   // 从栏目表拿出所有的栏目数据
-  const { list } = await getList(ctx, 'Channel', { pagesize: -1, sort: '-sort,-id', ...params })
+  const channelData = await getList(ctx, 'Channel', { pagesize: -1, sort: '-sort,-id', ...params })
+  if ('err' in channelData) ctx.throw(500, '获取栏目数据失败')
+  const { list } = channelData
   // 递归函数
   const makeTree = (pid: number, arr: any[]) => {
     const res = []

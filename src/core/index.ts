@@ -14,6 +14,9 @@ export const Core = async (ctx: Context, model: ModelType, allParams: RequestPar
     if (handle) allParams.params = await handle(ctx, allParams, id)
   }
   let data = await Query[method](ctx, model, params, id)
+
+  if (data.err) ctx.throw(data.err.code, data.err.msg)
+
   // 如有后处理，对查询结果进行处理
   if (afterHandle.includes(apiName)) {
     const handle = require(`../api/restful/after/${apiName}`).default[method]

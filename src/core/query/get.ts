@@ -1,7 +1,13 @@
+import type { CoreErrorTypes, DetailDataTypes, ModelType } from '@/types/core'
+import { err } from '@/utils/tools'
 import type { Context } from 'koa'
-import type { ModelType, RequestParamsType } from '../../types/core'
 
-const get = async (ctx: Context, model: ModelType, params: any, id?: string) => {
+const get = async (
+  ctx: Context,
+  model: ModelType,
+  params: any,
+  id?: string,
+): Promise<DetailDataTypes | CoreErrorTypes> => {
   const repository = ctx.db.getRepository(model)
 
   // 获取第一条数据
@@ -10,8 +16,8 @@ const get = async (ctx: Context, model: ModelType, params: any, id?: string) => 
       where: {},
       order: { id: 'ASC' },
     })
-    if (!record) ctx.throw(404, '没有找到数据')
-    return record as any
+    if (!record) return err(404, '没有找到数据')
+    return record as DetailDataTypes
   }
 
   // 通过 ID 获取单条数据
@@ -19,11 +25,11 @@ const get = async (ctx: Context, model: ModelType, params: any, id?: string) => 
     const record = await repository.findOne({
       where: { id: Number.parseInt(id) },
     })
-    if (!record) ctx.throw(404, '没有找到数据')
-    return record as any
+    if (!record) return err(404, '没有找到数据')
+    return record as DetailDataTypes
   }
 
-  ctx.throw(400, '不支持的获取方式')
+  return err(400, '不支持的获取方式')
 }
 
 export default get

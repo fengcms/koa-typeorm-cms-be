@@ -8,7 +8,11 @@ export const createToken = (payload: TokenPayloadTypes): string => {
 }
 export const verifyToken = (token: string) => {
   if (token) {
-    return jwt.verify(token, JWT_SECRET) as TokenPayloadTypes
+    try {
+      return jwt.verify(token, JWT_SECRET) as TokenPayloadTypes
+    } catch (error) {
+      return false
+    }
   }
   return false
 }

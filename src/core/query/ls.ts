@@ -1,6 +1,7 @@
-import type { Context, Next } from 'koa'
-import { Between, In, IsNull, LessThan, LessThanOrEqual, Like, MoreThan, MoreThanOrEqual, Not } from 'typeorm'
-import type { ModelType, RequestParamsType } from '../../types/core'
+import type { CoreErrorTypes, ListDataTypes, ModelType } from '@/types/core'
+import { err } from '@/utils/tools'
+import type { Context } from 'koa'
+import { In, IsNull, LessThan, LessThanOrEqual, Like, MoreThan, MoreThanOrEqual, Not } from 'typeorm'
 
 // 从请求参数中找出非标准参数并输出为对象
 const getArgs = (params: Record<string, any>) => {
@@ -25,7 +26,12 @@ const ArgHandle = {
   nnil: () => Not(IsNull()), // 非空查询
 }
 
-const ls = async (ctx: Context, model: ModelType, params: any, id?: string) => {
+const ls = async (
+  ctx: Context,
+  model: ModelType,
+  params: any,
+  id?: string,
+): Promise<CoreErrorTypes | ListDataTypes> => {
   const repository = ctx.db.getRepository(model)
   const PAGE_SIZE = 10 // 默认分页大小
 
@@ -33,7 +39,7 @@ const ls = async (ctx: Context, model: ModelType, params: any, id?: string) => {
 
   // 校验分页参数
   if (Number.isNaN(Number(pagesize)) || Number.isNaN(Number(page)))
-    ctx.throw(412, '参数非法, pagesize 和 page 只能是数字')
+    return err(412, '参数非法, pagesize 和 page 只能是数字')
 
   const PSize = Number(pagesize)
 
@@ -68,8 +74,8 @@ const ls = async (ctx: Context, model: ModelType, params: any, id?: string) => {
     let st: Date
     let et: Date
 
-    if (timeArrLen > 2) ctx.throw(412, 'time参数有误')
-    if (timeArr.some((i) => Number.isNaN(Number(i)))) ctx.throw(412, 'time参数只接受时间戳数字')
+    if (timeArrLen > 2) return err(412, 'time参数有误')
+    if (timeArr.some((i: string) => Number.isNaN(Number(i)))) return err(412, 'time参数只接受时间戳数字')
 
     if (timeArrLen === 1) {
       const t = +timeArr[0]
@@ -102,7 +108,7 @@ const ls = async (ctx: Context, model: ModelType, params: any, id?: string) => {
         const condition = ArgHandle[argConf](args[i])
         queryBuilder.andWhere({ [fieldName]: condition })
       } else {
-        ctx.throw(412, `${i} 请求参数配置不被支持`)
+        return err(412, `${i} 请求参数配置不被支持`)
       }
     }
   }

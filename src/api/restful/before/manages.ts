@@ -42,10 +42,12 @@ export default {
     const { params } = allParams
     // 校验是否是自己
     const userInfo = await getItem(ctx, 'Manages', id)
+    if ('err' in userInfo) ctx.throw(500, '服务器异常')
     if (userInfo.account === params.account) ctx.throw(400, '不能删除自己哦！')
 
     // 校验是否是最后一个超管账号
     const managesList = await getList(ctx, 'Manages')
+    if ('err' in managesList) ctx.throw(500, '服务器异常')
     if (managesList.count <= 1) ctx.throw(400, '系统至少需要一个超级管理员账号')
 
     // 通过校验

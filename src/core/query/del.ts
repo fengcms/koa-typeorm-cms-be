@@ -1,8 +1,9 @@
+import { err } from '@/utils/tools'
 import type { Context, Next } from 'koa'
 import type { ModelType, RequestParamsType } from '../../types/core'
 
 const del = async (ctx: Context, model: ModelType, params: any, id?: string) => {
-  if (!id) ctx.throw(412, '删除操作必须提供 id')
+  if (!id) return err(412, '删除操作必须提供 id')
 
   const repository = ctx.db.getRepository(model)
   const res = { succ: [], fail: [] }
@@ -23,7 +24,7 @@ const del = async (ctx: Context, model: ModelType, params: any, id?: string) => 
 
   // 如果存在无效 ID，直接返回错误信息
   if (invalidIds.length > 0) {
-    ctx.throw(412, `包含无效的 ID 参数 ${invalidIds.join(',')}`)
+    return err(412, `包含无效的 ID 参数 ${invalidIds.join(',')}`)
   }
 
   // 只处理有效的 ID

@@ -25,6 +25,7 @@ export default {
 
     // 校验账号是否唯一
     const editInfo = await getItem(ctx, 'Editor', { account })
+    if ('err' in editInfo) ctx.throw(400, '小编账号已经存在')
     if (editInfo) ctx.throw(400, '小编账号已经存在')
 
     return params
@@ -37,6 +38,7 @@ export default {
     // 校验账号是否唯一
     const { account } = params
     const editInfo = await getItem(ctx, 'Editor', id)
+    if ('err' in editInfo) ctx.throw(400, '小编账号异常')
     if (!editInfo) ctx.throw(404, '您要更新信息的小编账号不存在')
     if (editInfo.account !== account) ctx.throw(400, '小编账号不允许修改')
 
