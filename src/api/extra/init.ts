@@ -9,15 +9,18 @@ export default async (ctx: Context) => {
     site: '已存在',
     channel: '已存在',
   }
-  if (!hasManage) {
+  if ('err' in hasManage) {
     const passwordStr = 'admin888'
-    const password = calcSha256Hash(`${passwordStr}`)
+    const passwordHash = calcSha256Hash(`${passwordStr}`)
+    const salt = makeSalt()
+    const password = calcSha256Hash(`${passwordHash}${salt}`)
     postItem(ctx, 'Manages', {
       account: 'admin',
       name: 'admin',
       password,
       email: 'web@web.com',
       mark: '系统初始管理员账号',
+      salt,
     }).then(() => {
       console.log('初始管理员账号添加完成 admin:admin888')
       res.manage = '初始管理员账号添加完成 admin:admin888'
