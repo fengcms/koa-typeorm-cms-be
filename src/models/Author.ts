@@ -8,7 +8,7 @@ export class Author {
   @Column('varchar')
   name: string
 
-  @Column('varchar', { nullable: true })
+  @Column('varchar', { default: '' })
   avatar: string
 
   @Column('text', { nullable: true })
@@ -17,10 +17,10 @@ export class Author {
   @Column({ type: 'bigint', nullable: true })
   mobile: number
 
-  @Column('varchar', { nullable: true })
+  @Column('varchar', { default: '' })
   email: string
 
-  @Column('varchar', { nullable: true })
+  @Column('varchar', { default: '' })
   website: string
 
   @CreateDateColumn()

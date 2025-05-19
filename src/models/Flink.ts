@@ -14,7 +14,7 @@ export class Flink {
   @Column('int', { default: 0 })
   sort: number
 
-  @Column('varchar', { nullable: true })
+  @Column('varchar', { default: '' })
   link: string
 
   @CreateDateColumn()

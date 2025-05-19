@@ -11,10 +11,10 @@ export class Show {
   @Column('text', { nullable: true })
   mark: string
 
-  @Column('varchar', { nullable: true })
+  @Column('varchar', { default: '' })
   img: string
 
-  @Column('varchar', { nullable: true })
+  @Column('varchar', { default: '' })
   link: string
 
   @CreateDateColumn()

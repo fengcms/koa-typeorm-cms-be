@@ -5,16 +5,16 @@ export class Complaint {
   @PrimaryGeneratedColumn()
   id: number
 
-  @Column('varchar', { nullable: true })
+  @Column('varchar', { default: '' })
   defendant: string
 
-  @Column('varchar', { nullable: true })
+  @Column('varchar', { default: '' })
   problem: string
 
-  @Column('varchar', { nullable: true })
+  @Column('varchar', { default: '' })
   appeal: string
 
-  @Column('varchar', { nullable: true })
+  @Column('varchar', { default: '' })
   img: string
 
   @Column('text', { nullable: true })
@@ -23,7 +23,7 @@ export class Complaint {
   @Column('int')
   user_id: number
 
-  @Column('varchar', { nullable: true })
+  @Column('varchar', { default: '' })
   user_name: string
 
   @Column('text', { nullable: true })

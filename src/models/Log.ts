@@ -5,10 +5,10 @@ export class Log {
   @PrimaryGeneratedColumn()
   id: number
 
-  @Column('varchar', { nullable: true })
+  @Column('varchar', { default: '' })
   type: string
 
-  @Column('varchar', { nullable: true })
+  @Column('varchar', { default: '' })
   role: string
 
   @Column('text', { nullable: true })
@@ -17,7 +17,7 @@ export class Log {
   @Column('int')
   user_id: number
 
-  @Column('varchar', { nullable: true })
+  @Column('varchar', { default: '' })
   user_name: string
 
   @CreateDateColumn()

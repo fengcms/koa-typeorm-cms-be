@@ -10,9 +10,12 @@ export class User {
   account: string
 
   @Column('varchar')
+  name: string
+
+  @Column('varchar')
   password: string
 
-  @Column('varchar', { nullable: true })
+  @Column('varchar', { default: '' })
   avatar: string
 
   @Column('text', { nullable: true })
@@ -27,13 +30,13 @@ export class User {
   @Column('varchar', { default: 'MARKDOWN' })
   editor: string
 
-  @Column({ type: 'bigint' })
-  mobile: number
+  @Column('varchar', { default: '' })
+  mobile: string
 
-  @Column('varchar', { nullable: true })
+  @Column('varchar', { default: '' })
   email: string
 
-  @Column('varchar', { nullable: true })
+  @Column('varchar', { default: '' })
   website: string
 
   @Column('varchar', { default: 'ACTIVE' })

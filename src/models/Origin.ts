@@ -8,10 +8,10 @@ export class Origin {
   @Column('varchar')
   name: string
 
-  @Column('varchar', { nullable: true })
+  @Column('varchar', { default: '' })
   contact: string
 
-  @Column('varchar', { nullable: true })
+  @Column('varchar', { default: '' })
   logo: string
 
   @Column('text', { nullable: true })
@@ -20,10 +20,10 @@ export class Origin {
   @Column({ type: 'bigint', nullable: true })
   mobile: number
 
-  @Column('varchar', { nullable: true })
+  @Column('varchar', { default: '' })
   email: string
 
-  @Column('varchar', { nullable: true })
+  @Column('varchar', { default: '' })
   website: string
 
   @CreateDateColumn()

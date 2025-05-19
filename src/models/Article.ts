@@ -23,19 +23,19 @@ export class Article {
   @Column('text', { nullable: true })
   markdown: string
 
-  @Column('varchar', { nullable: true })
+  @Column('varchar', { default: '', nullable: true })
   img: string
 
-  @Column('varchar', { nullable: true })
+  @Column('varchar', { default: '' })
   video: string
 
-  @Column('varchar', { nullable: true })
+  @Column('varchar', { default: '' })
   author: string
 
-  @Column('varchar', { nullable: true })
+  @Column('varchar', { default: '' })
   origin: string
 
-  @Column('varchar', { nullable: true })
+  @Column('varchar', { default: '' })
   editor: string
 
   @Column('int', { nullable: true })

@@ -11,7 +11,7 @@ export class Site {
   @Column('varchar')
   title: string
 
-  @Column('varchar', { nullable: true })
+  @Column('varchar', { default: '' })
   logo: string
 
   @Column('text', { nullable: true })

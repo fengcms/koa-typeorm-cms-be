@@ -12,10 +12,10 @@ export class Manages {
   @Column('text')
   password: string
 
-  @Column('varchar', { nullable: true })
+  @Column('varchar', { default: '' })
   name: string
 
-  @Column('varchar', { nullable: true })
+  @Column('varchar', { default: '' })
   avatar: string
 
   @Column('text', { nullable: true })
@@ -24,10 +24,10 @@ export class Manages {
   @Column('varchar', { default: 'MARKDOWN' })
   editor: string
 
-  @Column({ type: 'bigint', nullable: true })
-  mobile: number
+  @Column('varchar', { default: '' })
+  mobile: string
 
-  @Column('varchar', { nullable: true })
+  @Column('varchar', { default: '' })
   email: string
 
   @Column('varchar', { default: makeSalt() })

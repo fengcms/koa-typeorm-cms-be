@@ -8,13 +8,13 @@ export class Reporter {
   @Column('varchar')
   name: string
 
-  @Column('varchar', { nullable: true })
+  @Column('varchar', { default: '' })
   avatar: string
 
-  @Column('varchar', { nullable: true })
+  @Column('varchar', { default: '' })
   code: string
 
-  @Column('varchar', { nullable: true })
+  @Column('varchar', { default: '' })
   position: string
 
   @Column('text', { nullable: true })
@@ -23,10 +23,10 @@ export class Reporter {
   @Column('varchar', { default: 'MAN' })
   sex: string
 
-  @Column({ type: 'bigint', nullable: true })
-  mobile: number
+  @Column('varchar', { default: '' })
+  mobile: ''
 
-  @Column('varchar', { nullable: true })
+  @Column('varchar', { default: '' })
   email: string
 
   @Column('varchar', { default: 'PENDING' })

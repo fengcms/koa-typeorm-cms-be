@@ -14,7 +14,7 @@ export class Channel {
   @Column('int', { default: 0 })
   sort: number
 
-  @Column('varchar', { nullable: true })
+  @Column('varchar', { default: '' })
   keywords: string
 
   @Column('text', { nullable: true })
@@ -23,10 +23,10 @@ export class Channel {
   @Column('varchar', { default: 'PENDING' })
   status: string
 
-  @Column('varchar', { nullable: true })
+  @Column('varchar', { default: '' })
   show_img: string
 
-  @Column('varchar', { nullable: true })
+  @Column('varchar', { default: '' })
   website: string
 
   @CreateDateColumn()
