@@ -13,7 +13,7 @@ export default {
   get: async (data: any, ctx: Context, { roleName, id }) => {
     const channel = await getItem(ctx, 'Channel', data.channel_id)
     if (roleName === 'anyone') putItem(ctx, 'Article', { hits: data.hits + 1 }, id)
-    data.channel_name = channel ? channel.name : '归属栏目错误'
+    data.channel_name = 'err' in channel ? '归属栏目错误' : channel.name
     return data
   },
 }

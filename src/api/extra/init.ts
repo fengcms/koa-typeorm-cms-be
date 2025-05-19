@@ -1,19 +1,15 @@
 import { getItem, postItem } from '@/core/query'
-import type { RequestParamsType } from '@/types/core'
-import { decrypt, encrypt } from '@/utils/rsa'
 import { calcSha256Hash, makeSalt, succ } from '@/utils/tools'
 import type { Context } from 'koa'
 
 export default async (ctx: Context) => {
   const hasManage = await getItem(ctx, 'Manages', 'first')
-  console.log('hasManage', hasManage)
   const res = {
     manage: '已存在',
     site: '已存在',
     channel: '已存在',
   }
   if (!hasManage) {
-    // const password = await rsa.encrypt('123456')
     const passwordStr = 'admin888'
     const password = calcSha256Hash(`${passwordStr}`)
     postItem(ctx, 'Manages', {
@@ -29,7 +25,6 @@ export default async (ctx: Context) => {
   }
 
   const hasSite = await getItem(ctx, 'Site', 'first')
-  console.log('hasSite', hasSite)
   if ('err' in hasSite) {
     postItem(ctx, 'Site', {
       name: 'FengCMS By FungLeo',
@@ -45,7 +40,7 @@ export default async (ctx: Context) => {
   if ('err' in hasChan) {
     const calcchannelMockDat = (pid, pre = '顶级') => {
       return 'leo'.split('').map((i, index) => {
-        return { pid, name: `${pre}栏目${pid}${index}` }
+        return { pid, name: `${pre}栏目${pid}${index}`, status: 'NORMAL' }
       })
     }
     const postData = await postItem(ctx, 'Channel', calcchannelMockDat(0))
@@ -59,7 +54,6 @@ export default async (ctx: Context) => {
         await postItem(ctx, 'Channel', calcchannelMockDat(i, '三级'))
       }
     }
-    console.log('初始测试栏目数据完成')
     res.channel = '初始测试栏目数据完成'
   }
   ctx.body = succ(res)
