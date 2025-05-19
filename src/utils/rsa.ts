@@ -24,7 +24,7 @@ export const encrypt = (str: string) => {
 }
 
 // 私钥解密方法
-export const decrypt = (str: string) => {
+export const decrypt = (str: string): Promise<string> => {
   return new Promise((resolve, reject) => {
     if (!str || typeof str !== 'string') {
       return reject(new Error('RSA解密失败: 无效的输入'))
