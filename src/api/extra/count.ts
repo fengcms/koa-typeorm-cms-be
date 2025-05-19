@@ -3,9 +3,9 @@ import { succ } from '@/utils/tools'
 import type { Context } from 'koa'
 
 export default async (ctx: Context) => {
-  const articleDate = await getList(ctx, 'Article', { pagesize: 1, page: 0 })
-  if ('err' in articleDate) ctx.throw(500, '获取文章数据失败')
-  const { count: article } = articleDate
+  const articleData = await getList(ctx, 'Article', { pagesize: 1, page: 0 })
+  if ('err' in articleData) ctx.throw(500, '获取文章数据失败')
+  const { count: article } = articleData
   const checkArticleData = await getList(ctx, 'Article', { pagesize: 1, page: 0, status: 'PENDING' })
   if ('err' in checkArticleData) ctx.throw(500, '获取文章数据失败')
   const { count: checkArticle } = checkArticleData
