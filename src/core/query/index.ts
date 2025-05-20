@@ -1,6 +1,6 @@
 import * as models from '@/models'
 import type { DetailDataTypes } from '@/types/core'
-import { toType } from '@/utils/tools'
+import { err, toType } from '@/utils/tools'
 import type { Context } from 'koa'
 import del from './del'
 import get from './get'

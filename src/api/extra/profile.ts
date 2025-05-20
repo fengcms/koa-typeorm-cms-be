@@ -53,7 +53,8 @@ export default async (ctx: Context, allParams: RequestParamsType, next) => {
       params.status = userInfo.status
     }
     // 通过校验
-    await putItem(ctx, modelKey, id, params)
+    const putRes = await putItem(ctx, modelKey, params, id)
+    if ('err' in putRes) ctx.throw(500, '账户更新失败')
     ctx.body = succ('个人信息更新成功')
   }
 }

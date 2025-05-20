@@ -25,9 +25,10 @@ export default async (ctx: Context, allParams: RequestParamsType) => {
     editor: 'Editor',
   }
   const dbUser = await getItem(ctx, sheet[role], { account })
+
+  if (!dbUser) ctx.throw(400, '用户名密码错误')
   if ('err' in dbUser) ctx.throw(500, '服务器异常')
   // 校验传入用户名是否存在
-  if (!dbUser) ctx.throw(400, '用户名密码错误')
   const hashedPassword = calcSha256Hash(`${reqPw}${dbUser.salt}`)
 
   // 校验密码是否正确
