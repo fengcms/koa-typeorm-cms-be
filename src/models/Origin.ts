@@ -17,8 +17,8 @@ export class Origin {
   @Column('text', { nullable: true })
   mark: string
 
-  @Column({ type: 'bigint', nullable: true })
-  mobile: number
+  @Column({ type: 'varchar', nullable: true })
+  mobile: string
 
   @Column('varchar', { default: '' })
   email: string

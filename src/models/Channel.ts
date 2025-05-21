@@ -20,7 +20,7 @@ export class Channel {
   @Column('text', { nullable: true })
   description: string
 
-  @Column('varchar', { default: 'PENDING' })
+  @Column('varchar', { default: 'NORMAL' })
   status: string
 
   @Column('varchar', { default: '' })

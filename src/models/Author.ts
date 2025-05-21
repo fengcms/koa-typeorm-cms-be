@@ -14,8 +14,8 @@ export class Author {
   @Column('text', { nullable: true })
   mark: string
 
-  @Column({ type: 'bigint', nullable: true })
-  mobile: number
+  @Column('varchar', { default: '' })
+  mobile: string
 
   @Column('varchar', { default: '' })
   email: string
