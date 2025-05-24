@@ -44,6 +44,7 @@ export default async (ctx: Context, { params }) => {
     mobile_copyright: siteInfo.mobile_copyright,
     contact: siteInfo.contact,
     channelName: '',
+    channelType: '',
   }
   if (!channelId && !articleId && !singleId) {
     const { name, title, keywords, description } = siteInfo
@@ -66,7 +67,9 @@ export default async (ctx: Context, { params }) => {
     const breadcrumb = await getBreadcrumb(ctx, name, channelId)
     res.breadcrumb = breadcrumb
     const titleArr = [...breadcrumb].reverse().map((i) => i.label)
+    res.name = name
     res.channelName = channel.name
+    res.channelType = channel.type
     res.title = titleArr.join(' - ')
     res.keywords = keywords || titleArr.join(',')
     res.description = description || `${titleArr.join('，')}。`

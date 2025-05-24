@@ -23,6 +23,9 @@ export class Channel {
   @Column('varchar', { default: 'NORMAL' })
   status: string
 
+  @Column('varchar', { default: 'ARTICLE' })
+  type: string
+
   @Column('varchar', { default: '' })
   show_img: string
 

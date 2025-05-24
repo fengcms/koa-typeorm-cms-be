@@ -32,10 +32,14 @@ export default async (ctx: Context, allParams: RequestParamsType) => {
       return item
     })
   }
-  ctx.body = succ({
+
+  const data = {
     zhaoShengXinXi: calcList(zhaoShengXinXi.list),
     zhuangBiaoShiPin: calcList(zhuangBiaoShiPin.list),
     wangZhanGongGao: calcList(wangZhanGongGao.list),
     contact: site?.contact,
-  })
+  }
+  global.cache[cacheKey] = { data, time: Date.now() }
+
+  ctx.body = succ(data)
 }
