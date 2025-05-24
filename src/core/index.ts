@@ -13,6 +13,8 @@ export const Core = async (ctx: Context, model: ModelType, allParams: RequestPar
     const handle = require(`../api/restful/before/${apiName}`).default[method]
     if (handle) allParams.params = await handle(ctx, allParams, id)
   }
+  console.log('allParams', 111)
+  // 执行查询
   let data = await Query[method](ctx, model, params, id)
 
   if (data.err) ctx.throw(data.err.code, data.err.msg)

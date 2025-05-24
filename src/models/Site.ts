@@ -26,6 +26,9 @@ export class Site {
   @Column('text', { nullable: true })
   mobile_copyright: string
 
+  @Column('text', { nullable: true })
+  contact: string
+
   @CreateDateColumn()
   time: Date
 }

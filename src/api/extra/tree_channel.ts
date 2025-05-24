@@ -9,11 +9,11 @@ import type { Context } from 'koa'
 export default async (ctx: Context, allParams: RequestParamsType) => {
   const { params } = allParams
   const cacheKey = `channel_tree_${objToStr(params)}`
-  const cache = global.cache[cacheKey]
-  if (cache && cache.time > Date.now() - 100000 * 60 * 10) {
-    ctx.body = succ(cache.data)
-    return
-  }
+  // const cache = global.cache[cacheKey]
+  // if (cache && cache.time > Date.now() - 100000 * 60 * 10) {
+  //   ctx.body = succ(cache.data)
+  //   return
+  // }
   // 从栏目表拿出所有的栏目数据
   const channelData = await getList(ctx, 'Channel', { pagesize: -1, sort: '-sort,-id', ...params })
   if ('err' in channelData) ctx.throw(500, '获取栏目数据失败')

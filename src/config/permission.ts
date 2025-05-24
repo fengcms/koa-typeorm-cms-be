@@ -27,9 +27,9 @@ const permission: PermissionConfigType = {
   manages: { anyone: nil, user: nil, editor: nil, admin },
   flink: { anyone, user: anyone, editor: anyone, admin },
   site: {
-    anyone: [ls],
-    user: [ls],
-    editor: [ls],
+    anyone: [ls, get],
+    user: [ls, get],
+    editor: [ls, get],
     admin: [ls, get, put],
   },
   author: normal,
