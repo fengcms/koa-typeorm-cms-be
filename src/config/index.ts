@@ -7,6 +7,15 @@ export const HostConfig = {
   host: '0.0.0.0',
 }
 
+export const DBConfig = {
+  type: 'mysql',
+  host: '192.168.8.6',
+  port: 3306,
+  username: 'root',
+  password: '123456',
+  database: 'koa_cms',
+}
+
 // 系统目录设置
 export const APP_DIR = {
   TMP_DIR: path.resolve(process.cwd(), './tmp'),

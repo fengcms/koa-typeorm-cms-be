@@ -167,3 +167,17 @@ export const calcSha256Hash = (str: string) => {
   hash.update(str)
   return hash.digest('hex')
 }
+
+export const runCommand = async (command: string, args: string[]): Promise<{ stdout: string; stderr: string }> => {
+  const { exec } = await import('node:child_process')
+  return new Promise((resolve, reject) => {
+    console.log(`${command} ${args.join(' ')}`)
+    exec(`${command} ${args.join(' ')}`, (error, stdout, stderr) => {
+      if (error) {
+        reject(error)
+      } else {
+        resolve({ stdout, stderr })
+      }
+    })
+  })
+}
