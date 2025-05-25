@@ -12,8 +12,9 @@ export const Core = async (ctx: Context, model: ModelType, allParams: RequestPar
     // 如有前处理，加载前处理
     const handle = require(`../api/restful/before/${apiName}`).default[method]
     if (handle) allParams.params = await handle(ctx, allParams, id)
+    // 如果前处理返回了数据，直接返回
+    if (ctx.body) return
   }
-  console.log('allParams', 111)
   // 执行查询
   let data = await Query[method](ctx, model, params, id)
 
