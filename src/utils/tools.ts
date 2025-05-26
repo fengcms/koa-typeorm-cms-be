@@ -1,3 +1,4 @@
+import { exec } from 'node:child_process'
 import { createHash } from 'node:crypto'
 /*
   公共工具方法集合
@@ -169,11 +170,11 @@ export const calcSha256Hash = (str: string) => {
 }
 
 export const runCommand = async (command: string, args: string[]): Promise<{ stdout: string; stderr: string }> => {
-  const { exec } = await import('node:child_process')
   return new Promise((resolve, reject) => {
     console.log(`${command} ${args.join(' ')}`)
     exec(`${command} ${args.join(' ')}`, (error, stdout, stderr) => {
       if (error) {
+        console.error(`执行命令出错：${error}`)
         reject(error)
       } else {
         resolve({ stdout, stderr })
