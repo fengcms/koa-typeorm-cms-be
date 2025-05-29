@@ -53,6 +53,7 @@ const permission: PermissionConfigType = {
   register: { anyone: [post], user: nil, editor: nil, admin: nil },
   reporter: { anyone: [get], user: [get], editor: [get], admin },
   get_reporter: { anyone: [ls], user: [ls], editor: [ls], admin: [ls] },
+  backup: { anyone: nil, user: nil, editor: nil, admin: [ls, post, get, del] },
 }
 
 export const getPermission = (apiName: string) => permission[apiName] ?? false
