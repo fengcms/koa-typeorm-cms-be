@@ -8,12 +8,10 @@ export default async (ctx: Context) => {
   const backupFileName = `backup-${timestamp}.sql`
 
   try {
-    const { stdout: aaa } = await runCommand('whoami', [])
     const { stdout, stderr } = await runCommand(
       'docker exec mysql mysqldump -h 192.168.8.6 -u root -p123456 koa_cms --single-transaction --routines --triggers --events',
       [],
     )
-    console.log(aaa)
     // const { stdout, stderr } = await runCommand('/usr/bin/docker exec mysql mysqldump', [
     //   '-h',
     //   DBConfig.host,
