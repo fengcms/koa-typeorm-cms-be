@@ -57,7 +57,7 @@ const listBackupData = async (ctx: Context, backDir: string) => {
         }),
     )
     const list = backupFiles.sort((a, b) => new Date(b.fileCreateTime).getTime() - new Date(a.fileCreateTime).getTime())
-    ctx.body = succ(list)
+    ctx.body = succ({ list, pageSize: list.length, page: 0, count: list.length })
   } catch (error) {
     ctx.status = 500
     ctx.body = fail('获取备份列表失败', 500)
@@ -107,7 +107,7 @@ const deleteBackupData = async (ctx: Context, backDir: string, fileName: string)
     }
     // 删除文件
     await fs.unlink(filePath)
-    ctx.body = succ('删除备份文件成功')
+    ctx.body = succ({ succ: [fileName] })
   } catch (error) {
     ctx.status = 500
     ctx.body = fail('删除备份文件失败', 500)
