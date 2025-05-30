@@ -49,7 +49,7 @@ export default async (ctx: Context, allParams: RequestParamsType, next) => {
     const userInfo = await getItem(ctx, modelKey, id)
     if ('err' in userInfo) ctx.throw(500, '账户数据存在异常')
     if (role === 'user') {
-      if (userInfo.name != null && params.name !== userInfo.name) ctx.throw(400, '用户名称不允许修改')
+      if (userInfo.name && params.name !== userInfo.name) ctx.throw(400, '用户名称不允许修改')
       params.status = userInfo.status
     }
     // 通过校验
