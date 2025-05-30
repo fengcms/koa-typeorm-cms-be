@@ -1,8 +1,15 @@
 import { getItem, postItem } from '@/core/query'
+import { generateRSAKeyPair } from '@/utils/rsa'
 import { calcSha256Hash, makeSalt, succ } from '@/utils/tools'
 import type { Context } from 'koa'
 
+// 系统初始化接口，用于初始化系统数据
+// 包括：管理员账号、系统信息、测试栏目数据
+// 注意：此接口只在数据库为空时调用，否则会覆盖原有数据
+// 因此，在正式环境中，应该将此接口删除
+
 export default async (ctx: Context) => {
+  await generateRSAKeyPair()
   const hasManage = await getItem(ctx, 'Manages', 'first')
   const res = {
     manage: '已存在',
