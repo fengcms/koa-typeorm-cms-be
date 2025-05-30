@@ -9,7 +9,7 @@ export class User {
   @Column('varchar')
   account: string
 
-  @Column('varchar')
+  @Column('varchar', { default: '' })
   name: string
 
   @Column('varchar')

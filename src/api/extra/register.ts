@@ -12,7 +12,7 @@ export default async (ctx: Context, allParams: RequestParamsType) => {
   if (!account || !password) ctx.throw(400, '请输入用户名密码')
   // 校验用户名是否存在
   const dbUser = await getItem(ctx, 'User', { account })
-  if (!('err' in dbUser)) ctx.throw(400, '用户名已存在')
+  if (dbUser != null) ctx.throw(400, '用户名已存在')
   // 校验传入密码是否能解密，如能解密则赋值 reqPw
   const reqPw = decrypt(password).catch((e) => ctx.throw(400, '密码RSA加密错误'))
 
