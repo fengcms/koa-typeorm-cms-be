@@ -49,6 +49,7 @@ const permission: PermissionConfigType = {
   article_prev_next: onlyRead,
   breadcrumb: { anyone: [ls], user: [ls], editor: [ls], admin: [ls] },
   seo: { anyone: [ls], user: [ls], editor: [ls], admin: [ls] },
+  image: { anyone: [ls], user: [ls], editor: [ls], admin: [ls] },
   count: { anyone: [ls], user: [ls], editor: [ls], admin: [ls] },
   register: { anyone: [post], user: nil, editor: nil, admin: nil },
   reporter: { anyone: [get], user: [get], editor: [get], admin },

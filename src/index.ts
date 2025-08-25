@@ -1,4 +1,8 @@
 import * as path from 'node:path'
+import * as dotenv from 'dotenv'
+// 加载环境变量
+dotenv.config({ path: path.resolve(process.cwd(), '.env') })
+
 import * as Koa from 'koa'
 import { koaBody } from 'koa-body'
 import * as koaStatic from 'koa-static'

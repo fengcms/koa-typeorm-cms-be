@@ -20,6 +20,7 @@ export const initDB = async () => {
       console.log('Data Source has been initialized!')
     })
     .catch((err) => {
+      console.log(dataSourceConfig)
       console.error('Error during Data Source initialization:', err)
     })
 }

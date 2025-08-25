@@ -11,11 +11,11 @@ export const koaBodyConfig = {
   formidable: {
     uploadDir: TMP_DIR,
     hashAlgorithm: 'md5',
-    maxFieldsSize: 2 * 1024 * 1024,
-    maxFileSize: 2 * 1024 * 1024,
+    maxFieldsSize: 10 * 1024 * 1024,
+    maxFileSize: 10 * 1024 * 1024,
     onFileBegin(name: string, file: any) {
-      console.log(`name: ${name}`)
-      console.log(file)
+      // console.log(`name: ${name}`)
+      // console.log(file)
       global.tmpFileUrl = global.tmpFileUrl || 0
       file.filepath = `${TMP_DIR}/upfile_${global.tmpFileUrl}`
       global.tmpFileUrl = global.tmpFileUrl >= 10 ? 0 : global.tmpFileUrl + 1

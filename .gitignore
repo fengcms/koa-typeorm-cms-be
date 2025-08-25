@@ -9,3 +9,4 @@ static/upfiles/
 sql/
 static/
 backups/
+.env
