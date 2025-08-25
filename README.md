@@ -174,7 +174,7 @@ http://localhost:3000/api/v1/
 - `POST /article` - 创建文章
 - `PUT /article/:id` - 更新文章
 - `DELETE /article/:id` - 删除文章
-- `GET /article_detail/:id` - 获取文章详情
+- `GET /article/:id` - 获取文章详情
 
 #### 用户管理
 - `GET /user` - 获取用户列表
@@ -184,7 +184,6 @@ http://localhost:3000/api/v1/
 
 #### 文件上传
 - `POST /upload` - 文件上传
-- `POST /image` - 图片上传（支持处理）
 - `GET /image` - 图片访问（支持缩放）
 
 #### 系统管理
@@ -211,8 +210,8 @@ curl -X POST http://localhost:3000/api/v1/article \
   -d '{"title":"文章标题","content":"文章内容"}'
 
 # 上传图片
-curl -X POST http://localhost:3000/api/v1/image \
-  -F "image=@photo.jpg" \
+curl -X POST http://localhost:3000/api/v1/upload \
+  -F "file=@photo.jpg" \
   -H "Authorization: Bearer your_jwt_token"
 ```
 
