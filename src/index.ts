@@ -12,6 +12,7 @@ import { initDB } from './db'
 import errorHandler from './middlewares/errorHandler'
 import logger from './middlewares/logger'
 import router from './router'
+import { findAvailablePort } from './utils/port'
 const app = new Koa()
 // 初始化数据库
 initDB()
@@ -29,6 +30,22 @@ app.use(router.routes())
 app.use(router.allowedMethods())
 // 静态资源服务
 
-app.listen(HostConfig.port, () => {
-  console.log(`Server running on http://localhost:${HostConfig.port}`)
-})
+// 启动服务器，自动查找可用端口
+const startServer = async () => {
+  try {
+    const availablePort = await findAvailablePort(HostConfig.port)
+    
+    app.listen(availablePort, () => {
+      console.log(`Server is running on http://${HostConfig.host}:${availablePort}`)
+      
+      if (availablePort !== HostConfig.port) {
+        console.log(`Note: Original port ${HostConfig.port} is occupied, automatically switched to port ${availablePort}`)
+      }
+    })
+  } catch (error) {
+    console.error('Failed to start server:', error)
+    process.exit(1)
+  }
+}
+
+startServer()
