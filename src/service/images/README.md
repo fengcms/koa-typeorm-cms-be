@@ -80,7 +80,7 @@ enum ScaleMode {
 
 ### 图片上传
 
-**接口地址：** `POST /api/images`
+**接口地址：** `POST /api/v1/upload`
 
 **请求参数：**
 - `image`: 图片文件（必需）
@@ -89,22 +89,22 @@ enum ScaleMode {
 
 **单张上传示例：**
 ```bash
-curl -X POST http://localhost:3000/api/images \
-  -F "image=@photo.jpg"
+curl -X POST http://localhost:3000/api/v1/upload \
+  -F "file=@photo.jpg"
 ```
 
 **批量上传示例：**
 ```bash
-curl -X POST http://localhost:3000/api/images \
-  -F "image1=@photo1.jpg" \
-  -F "image2=@photo2.jpg" \
-  -F "image3=@photo3.jpg"
+curl -X POST http://localhost:3000/api/v1/upload \
+  -F "file1=@photo1.jpg" \
+  -F "file2=@photo2.jpg" \
+  -F "file3=@photo3.jpg"
 ```
 
 **带参数上传：**
 ```bash
-curl -X POST http://localhost:3000/api/images \
-  -F "image=@photo.jpg" \
+curl -X POST http://localhost:3000/api/v1/upload \
+  -F "file=@photo.jpg" \
   -F "resize=true" \
   -F "maxSize=800"
 ```
@@ -193,7 +193,7 @@ GET /api/images?path=/upfiles/12/34567890abcdef.jpg&w=200&h=200&mode=cover
 import { handleImageUpload, handleImageRequest } from '@/service/images'
 
 // 在路由中使用
-router.post('/images', handleImageUpload)
+router.post('/upload', handleImageUpload)
 router.get('/images', handleImageRequest)
 ```
 
